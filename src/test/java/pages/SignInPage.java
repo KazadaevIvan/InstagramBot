@@ -25,6 +25,7 @@ public class SignInPage extends BasePage {
 
     @Override
     public SignInPage isPageOpened() {
+        logInButton.isDisplayed();
         return this;
     }
 
