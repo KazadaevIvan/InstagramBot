@@ -7,7 +7,7 @@ import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
 public class HomePage extends BasePage {
     @iOSXCUITFindBy(accessibility = "Instagram main feed")
-    @AndroidFindBy(id = "")
+    @AndroidFindBy(accessibility = "Scroll to top")
     public MobileElement mainFeed;
 
     public HomePage(AppiumDriver<MobileElement> driver) {

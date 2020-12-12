@@ -7,15 +7,15 @@ import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
 public class SignInPage extends BasePage {
     @iOSXCUITFindBy(accessibility = "username-field")
-    @AndroidFindBy(id = "com.instagram.android:id/log_in_button")
+    @AndroidFindBy(id = "com.instagram.android:id/login_username")
     public MobileElement userNameInput;
 
     @iOSXCUITFindBy(accessibility = "password-field")
-    @AndroidFindBy(id = "com.instagram.android:id/log_in_button")
+    @AndroidFindBy(id = "com.instagram.android:id/password")
     public MobileElement passwordInput;
 
     @iOSXCUITFindBy(accessibility = "login-button")
-    @AndroidFindBy(id = "com.instagram.android:id/log_in_button")
+    @AndroidFindBy(id = "com.instagram.android:id/next_button")
     public MobileElement logInButton;
 
     public SignInPage(AppiumDriver<MobileElement> driver) {
