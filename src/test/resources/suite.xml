@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Test-class Suite" parallel="tests" thread-count="2">
-    <test name="Pixel_4_XL - Tests" >
-        <parameter name="deviceName" value="Pixel_4_XL_API_30"/>
+    <test name="Pixel Android 8.0 - Tests" >
+        <parameter name="deviceName" value="Pixel Android 8.0"/>
         <parameter name="udid" value="emulator-5554"/>
         <parameter name="platform" value="Android"/>
         <classes>
@@ -17,4 +17,12 @@
             <class name="tests.LoginTest"/>
         </classes>
     </test> <!-- Test -->
+    <test name="iPhone - Tests" >
+        <parameter name="deviceName" value="iPhone"/>
+        <parameter name="udid" value="0198419b57060d313b6ed2409fd4919871f5fe2e"/>
+        <parameter name="platform" value="iOS"/>
+        <classes>
+            <class name="tests.LoginTest"/>
+        </classes>
+    </test>
 </suite>
