@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Test-class Suite" parallel="tests" thread-count="2">
+    <test name="Pixel_4_XL - Tests" >
+        <parameter name="deviceName" value="Pixel_4_XL_API_30"/>
+        <parameter name="udid" value="emulator-5554"/>
+        <parameter name="platform" value="Android"/>
+        <classes>
+            <class name="tests.LoginTest"/>
+        </classes>
+    </test> <!-- Test -->
+    <test name="xiaomi - Tests" >
+        <parameter name="deviceName" value="xiaomi redmi 4x"/>
+        <parameter name="udid" value="495dc6217cf4"/>
+        <parameter name="platform" value="Android"/>
+        <classes>
+            <class name="tests.LoginTest"/>
+        </classes>
+    </test> <!-- Test -->
+</suite>
