@@ -13,6 +13,7 @@ public class IOSDriverManager extends DriverManager {
     public AppiumDriver createDriver(AppiumDriverLocalService service, String udid, String deviceName) {
         cap.setCapability("bundleId", PropertyManager.getInstance().get("ios.application.bundle.id"));
         cap.setCapability("automationName", PropertyManager.getInstance().get("ios.automation.name"));
+        cap.setCapability("autoAcceptAlerts", true);
 
         driver = new IOSDriver(service, cap);
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);

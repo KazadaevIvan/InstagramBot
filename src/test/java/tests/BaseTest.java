@@ -21,15 +21,15 @@ public class BaseTest {
     SignInPage signInPage;
     HomePage homePage;
 
-    @Parameters(value={"deviceName", "platform", "udid"})
+    @Parameters(value = {"deviceName", "platform", "udid"})
     @BeforeMethod
     public void setUp(@Optional("xiaomi redmi 4x") String deviceName, @Optional("Android") String platform, @Optional("495dc6217cf4") String udid) {
         DriverManager manager = null;
         switch (platform) {
-            case ("Android") :
+            case ("Android"):
                 manager = new AndroidDriverManager();
                 break;
-            case ("iOS") :
+            case ("iOS"):
                 manager = new IOSDriverManager();
                 break;
         }
