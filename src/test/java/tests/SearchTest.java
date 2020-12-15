@@ -30,20 +30,23 @@ public class SearchTest extends BaseTest {
                 .isPageOpened()
                 .openFollowersList();
         profileFollowsPage
-                .isPageOpened()
-                .openProfile(1);
-        profilePage
-                .isPageOpened()
-                .clickFollowButton()
-                .openFirstPhoto();
-        postsPage
-                .isPageOpened()
-                .clickLikeButton()
-                .clickBackButton();
-        profilePage
-                .clickBackButton();
-        profileFollowsPage
                 .isPageOpened();
+        for (int i = 0; i < 2; i++) {
+            profileFollowsPage
+                    .openProfile();
+            profilePage
+                    .isPageOpened()
+                    .openFirstPhoto();
+            postsPage
+                    .isPageOpened()
+                    .clickLikeButton()
+                    .clickBackButton();
+            profilePage
+                    .isPageOpened()
+                    .clickFollowButton()
+                    .clickBackButton();
+            profileFollowsPage
+                    .isPageOpened();
+        }
     }
 }
-
