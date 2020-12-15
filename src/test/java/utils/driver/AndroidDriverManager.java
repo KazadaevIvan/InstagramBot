@@ -12,11 +12,13 @@ public class AndroidDriverManager extends DriverManager {
 
     @Override
     public AppiumDriver createDriver(AppiumDriverLocalService service, String udid, String deviceName) {
-        cap.setCapability("appActivity",PropertyManager.getInstance().get("application.activity.name"));
+        cap.setCapability("appActivity", PropertyManager.getInstance().get("application.activity.name"));
         cap.setCapability("appPackage", PropertyManager.getInstance().get("application.package.name"));
         cap.setCapability("app", new File(PropertyManager.getInstance().get("application.path")).getAbsolutePath());
         cap.setCapability("udid", udid);
-        if(udid.contains("emulator")){
+        cap.setCapability("autoGrantPermissions", true);
+
+        if (udid.contains("emulator")) {
             cap.setCapability("avd", deviceName);
             cap.setCapability("avdLaunchTimeout", 300000);
             cap.setCapability("avdReadyTimeout", 300000);
