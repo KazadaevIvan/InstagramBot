@@ -11,8 +11,8 @@ public class SearchTest extends BaseTest {
                 .clickSignIn();
         signInPage
                 .isPageOpened()
-                .typeEmail("")
-                .typePassword("")
+                .typeEmail(email)
+                .typePassword(password)
                 .clickLogInButton();
         homePage
                 .isPageOpened();
@@ -24,14 +24,14 @@ public class SearchTest extends BaseTest {
                 .openSearchPage();
         searchPage
                 .isPageOpened()
-                .typeSearchInfo("")
+                .typeSearchInfo(profile)
                 .openSearchResult();
         profilePage
                 .isPageOpened()
                 .openFollowersList();
         profileFollowsPage
                 .isPageOpened();
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < numberOfProfilesToFollow; i++) {
             profileFollowsPage
                     .openProfile();
             profilePage
