@@ -7,12 +7,18 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import pages.*;
+import utils.PropertyReader;
 import utils.appium.AppiumServerJava;
 import utils.driver.AndroidDriverManager;
 import utils.driver.DriverManager;
 import utils.driver.IOSDriverManager;
 
 public class BaseTest {
+    String email = System.getenv().getOrDefault("email", PropertyReader.getProperty("email"));
+    String password = System.getenv().getOrDefault("password", PropertyReader.getProperty("password"));
+    String profile = System.getenv().getOrDefault("profile", PropertyReader.getProperty("profile"));
+    int numberOfProfilesToFollow = Integer.parseInt(System.getenv().getOrDefault("number.of.profiles.to.follow", PropertyReader.getProperty("number.of.profiles.to.follow")));
+
     AppiumDriverLocalService appiumServer;
     AppiumDriver driver;
     SignUpPage signUpPage;
