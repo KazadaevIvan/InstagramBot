@@ -7,7 +7,7 @@ import utils.appium.AppiumUtils;
 import java.util.List;
 
 public class ProfileFollowsPage extends BasePage {
-    public static final String ACCOUNT_LOCATOR_IOS = "//XCUIElementTypeButton[not(contains(@name, 'Following'))]/../XCUIElementTypeOther";
+    public static final String ACCOUNT_LOCATOR_IOS = "//XCUIElementTypeButton[not(contains(@name, 'Following')) and not(contains(@name, 'Requested'))]/../XCUIElementTypeOther";
     public static final String ACCOUNT_LOCATOR_ANDROID = "//android.widget.Button[@text='Follow']/../android.widget.LinearLayout";
     public static final String SEARCH_INPUT_LOCATOR_IOS = "search-text-input";
     public static final String SEARCH_INPUT_LOCATOR_ANDROID = "com.instagram.android:id/row_search_edit_text";
