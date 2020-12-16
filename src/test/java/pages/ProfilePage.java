@@ -5,7 +5,6 @@ import io.appium.java_client.MobileElement;
 import utils.appium.AppiumUtils;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 
 public class ProfilePage extends BasePage {
     public static final String FOLLOWERS_LOCATOR_IOS = "user-detail-header-followers";
@@ -107,16 +106,5 @@ public class ProfilePage extends BasePage {
         }
         backButton.click();
         return new ProfileFollowsPage(driver);
-    }
-
-    public Boolean isPrivate() throws NoSuchElementException {
-        switch (platform) {
-            case ("iOS"):
-                privateAccountTitle = driver.findElementByAccessibilityId(PRIVATE_ACCOUNT_TITLE_LOCATOR_IOS);
-                break;
-            case ("Android"):
-                privateAccountTitle = driver.findElementById(PRIVATE_ACCOUNT_TITLE_LOCATOR_ANDROID);
-        }
-        return privateAccountTitle.isDisplayed();
     }
 }
