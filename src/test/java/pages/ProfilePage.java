@@ -5,6 +5,7 @@ import io.appium.java_client.MobileElement;
 import utils.appium.AppiumUtils;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class ProfilePage extends BasePage {
     public static final String FOLLOWERS_LOCATOR_IOS = "user-detail-header-followers";
@@ -17,11 +18,14 @@ public class ProfilePage extends BasePage {
     public static final String BACK_BUTTON_LOCATOR_ANDROID = "com.instagram.android:id/action_bar_button_back";
     public static final String PHOTO_LIST_LOCATOR_IOS = "//XCUIElementTypeButton[@name='media-thumbnail-cell']";
     public static final String PHOTO_LIST_LOCATOR_ANDROID = "//androidx.recyclerview.widget.RecyclerView/android.widget.LinearLayout/android.widget.ImageView";
+    public static final String PRIVATE_ACCOUNT_TITLE_LOCATOR_IOS = "This account is private";
+    public static final String PRIVATE_ACCOUNT_TITLE_LOCATOR_ANDROID = "com.instagram.android:id/empty_state_view_title";
     public MobileElement followers;
     public MobileElement followButton;
     public MobileElement listView;
     public MobileElement backButton;
     public List<MobileElement> photoList;
+    public MobileElement privateAccountTitle;
 
     public ProfilePage(AppiumDriver<MobileElement> driver) {
         super(driver);
@@ -103,5 +107,16 @@ public class ProfilePage extends BasePage {
         }
         backButton.click();
         return new ProfileFollowsPage(driver);
+    }
+
+    public Boolean isPrivate() throws NoSuchElementException {
+        switch (platform) {
+            case ("iOS"):
+                privateAccountTitle = driver.findElementByAccessibilityId(PRIVATE_ACCOUNT_TITLE_LOCATOR_IOS);
+                break;
+            case ("Android"):
+                privateAccountTitle = driver.findElementById(PRIVATE_ACCOUNT_TITLE_LOCATOR_ANDROID);
+        }
+        return privateAccountTitle.isDisplayed();
     }
 }
