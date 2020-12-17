@@ -6,14 +6,22 @@ import org.testng.annotations.Test;
 public class SearchTest extends BaseTest {
     @BeforeMethod
     public void login() {
-        signUpPage
-                .isPageOpened()
-                .clickSignIn();
-        signInPage
-                .isPageOpened()
-                .typeEmail(email)
-                .typePassword(password)
-                .clickLogInButton();
+        if (signUpPage.getSignUpWithEmailButtonList().size() > 0) {
+            signUpPage
+                    .isPageOpened()
+                    .clickSignIn();
+            signInPage
+                    .isPageOpened()
+                    .typeEmail(email)
+                    .typePassword(password)
+                    .clickLogInButton();
+        } else if (signInPage.getLogInButtonList().size() > 0) {
+            signInPage
+                    .isPageOpened()
+                    .typeEmail(email)
+                    .typePassword(password)
+                    .clickLogInButton();
+        }
         homePage
                 .isPageOpened();
     }
