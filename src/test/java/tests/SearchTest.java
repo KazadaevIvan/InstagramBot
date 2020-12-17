@@ -46,12 +46,12 @@ public class SearchTest extends BaseTest {
                             .clickBackButton();
                 }
             }
-                profilePage
-                        .isPageOpened()
-                        .clickFollowButton()
-                        .clickBackButton();
-                profileFollowsPage
-                        .isPageOpened();
+            profilePage
+                    .isPageOpened()
+                    .clickFollowButton()
+                    .clickBackButton();
+            profileFollowsPage
+                    .isPageOpened();
         }
     }
 }
