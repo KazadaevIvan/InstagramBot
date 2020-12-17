@@ -2,8 +2,11 @@ package pages;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.support.ui.FluentWait;
 import utils.appium.AppiumUtils;
 
+import java.time.Duration;
 import java.util.List;
 
 public class ProfilePage extends BasePage {
@@ -71,6 +74,11 @@ public class ProfilePage extends BasePage {
 
     @Override
     public ProfilePage isPageOpened() {
+        new FluentWait<>(driver)
+                .withTimeout(Duration.ofSeconds(21))
+                .pollingEvery(Duration.ofSeconds(3))
+                .ignoring(StaleElementReferenceException.class)
+                .until(driver -> getFollowers());
         getFollowers().isDisplayed();
         return this;
     }
