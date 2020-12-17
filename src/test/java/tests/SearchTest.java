@@ -35,18 +35,23 @@ public class SearchTest extends BaseTest {
             profileFollowsPage
                     .openProfile();
             profilePage
-                    .isPageOpened()
-                    .openFirstPhoto();
-            postsPage
-                    .isPageOpened()
-                    .clickLikeButton()
-                    .clickBackButton();
-            profilePage
-                    .isPageOpened()
-                    .clickFollowButton()
-                    .clickBackButton();
-            profileFollowsPage
                     .isPageOpened();
+            if (!profilePage.isPrivate()) {
+                if (profilePage.hasPhotos()) {
+                    profilePage
+                            .openFirstPhoto();
+                    postsPage
+                            .isPageOpened()
+                            .clickLikeButton()
+                            .clickBackButton();
+                }
+            }
+                profilePage
+                        .isPageOpened()
+                        .clickFollowButton()
+                        .clickBackButton();
+                profileFollowsPage
+                        .isPageOpened();
         }
     }
 }
