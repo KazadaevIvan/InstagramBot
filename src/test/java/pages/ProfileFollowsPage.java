@@ -13,10 +13,13 @@ public class ProfileFollowsPage extends BasePage {
     public static final String SEARCH_INPUT_LOCATOR_ANDROID = "com.instagram.android:id/row_search_edit_text";
     public static final String LIST_VIEW_LOCATOR_IOS = "follow-list";
     public static final String LIST_VIEW_LOCATOR_ANDROID = "android:id/list";
+    public static final String FOLLOWERS_TAB_LOCATOR_IOS = "//XCUIElementTypeStaticText[contains(@label,'Followers')]";
+    public static final String FOLLOWERS_TAB_LOCATOR_ANDROID = "//android.widget.TextView[contains(@text,'Followers')]";
     public MobileElement account;
     public List<MobileElement> accountList;
     public MobileElement searchInput;
     public MobileElement listView;
+    public MobileElement followersTab;
 
     public ProfileFollowsPage(AppiumDriver<MobileElement> driver) {
         super(driver);
@@ -29,6 +32,7 @@ public class ProfileFollowsPage extends BasePage {
                 break;
             case ("Android"):
                 listView = driver.findElementById(LIST_VIEW_LOCATOR_ANDROID);
+                break;
         }
         return listView;
     }
@@ -40,6 +44,7 @@ public class ProfileFollowsPage extends BasePage {
                 break;
             case ("Android"):
                 accountList = driver.findElementsByXPath(ACCOUNT_LOCATOR_ANDROID);
+                break;
         }
         return accountList;
     }
@@ -51,6 +56,7 @@ public class ProfileFollowsPage extends BasePage {
                 break;
             case ("Android"):
                 account = driver.findElementByXPath(ACCOUNT_LOCATOR_ANDROID);
+                break;
         }
         return account;
     }
@@ -59,17 +65,18 @@ public class ProfileFollowsPage extends BasePage {
     public ProfileFollowsPage isPageOpened() {
         switch (platform) {
             case ("iOS"):
-                searchInput = driver.findElementByAccessibilityId(SEARCH_INPUT_LOCATOR_IOS);
+                followersTab = driver.findElementByXPath(FOLLOWERS_TAB_LOCATOR_IOS);
                 break;
             case ("Android"):
-                searchInput = driver.findElementById(SEARCH_INPUT_LOCATOR_ANDROID);
+                followersTab = driver.findElementByXPath(FOLLOWERS_TAB_LOCATOR_ANDROID);
+                break;
         }
-        searchInput.isDisplayed();
+        followersTab.isSelected();
         return this;
     }
 
     public ProfilePage openProfile() {
-        Boolean isFoundElement = getAccountList().size() > 0;
+        boolean isFoundElement = getAccountList().size() > 0;
         while (!isFoundElement) {
             AppiumUtils.scrollByCoordinates(driver, getListView(), 0.6);
             isFoundElement = getAccountList().size() > 0;
