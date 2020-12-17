@@ -94,7 +94,7 @@ public class ProfilePage extends BasePage {
     }
 
     public PostsPage openFirstPhoto() {
-        Boolean isFoundElement = getPhotoList().size() > 0;
+        boolean isFoundElement = getPhotoList().size() > 0;
         while (!isFoundElement) {
             AppiumUtils.scrollByCoordinates(driver, getListView(), 0.9);
             isFoundElement = getPhotoList().size() > 0;
@@ -136,7 +136,8 @@ public class ProfilePage extends BasePage {
             case ("Android"):
                 postsNumber = driver.findElementById(POSTS_NUMBER_LOCATOR_ANDROID);
                 return Integer.parseInt(postsNumber.getText()) > 0;
-            default: return null;
+            default:
+                return null;
         }
 
     }
