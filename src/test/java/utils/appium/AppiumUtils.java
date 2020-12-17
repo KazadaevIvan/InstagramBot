@@ -13,7 +13,7 @@ public class AppiumUtils {
     public static void scrollByCoordinates(AppiumDriver<MobileElement> driver, MobileElement listView, double startYRation) {
         int height = listView.getSize().getHeight();
         int width = listView.getSize().getWidth();
-        int startX = width/2;
+        int startX = width / 2;
         int startY = (int) (height * startYRation);
         int endY = (int) (height * 0.1);
 
