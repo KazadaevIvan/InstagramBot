@@ -12,7 +12,7 @@ public class SearchPage extends BasePage {
     public static final String SEARCH_INPUT_LOCATOR_IOS = "search-text-input";
     public static final String SEARCH_INPUT_LOCATOR_ANDROID = "com.instagram.android:id/action_bar_search_edit_text";
     public static final String ACCOUNT_TAB_LOCATOR_IOS = "search-user";
-    public static final String ACCOUNT_TAB_LOCATOR_ANDROID = "//android.widget.TextView[@text='ACCOUNTS' and @resource-id='com.instagram.android:id/tab_button_name_text']";
+    public static final String ACCOUNT_TAB_LOCATOR_ANDROID = "//android.widget.TextView[@text='Accounts' and @resource-id='com.instagram.android:id/tab_button_name_text']";
     public static final String LIST_VIEW_LOCATOR_IOS = "//XCUIElementTypeCollectionView";
     public static final String LIST_VIEW_LOCATOR_ANDROID = "android:id/list";
     public List<MobileElement> accountNameList;

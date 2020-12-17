@@ -3,6 +3,8 @@ package pages;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 
+import java.util.List;
+
 public class SignInPage extends BasePage {
     public static final String USER_NAME_INPUT_LOCATOR_IOS = "username-field";
     public static final String USER_NAME_INPUT_LOCATOR_ANDROID = "com.instagram.android:id/login_username";
@@ -13,6 +15,8 @@ public class SignInPage extends BasePage {
     public MobileElement userNameInput;
     public MobileElement passwordInput;
     public MobileElement logInButton;
+
+    List<MobileElement> loginButtonList;
 
     public SignInPage(AppiumDriver<MobileElement> driver) {
         super(driver);
@@ -28,6 +32,18 @@ public class SignInPage extends BasePage {
                 break;
         }
         return logInButton;
+    }
+
+    public List<MobileElement> getLogInButtonList() {
+        switch (platform) {
+            case ("iOS"):
+                loginButtonList = driver.findElementsByAccessibilityId(LOG_IN_BUTTON_LOCATOR_IOS);
+                break;
+            case ("Android"):
+                loginButtonList = driver.findElementsById(LOG_IN_BUTTON_LOCATOR_ANDROID);
+                break;
+        }
+        return loginButtonList;
     }
 
     @Override

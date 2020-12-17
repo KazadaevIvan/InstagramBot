@@ -10,7 +10,7 @@ public abstract class DriverManager {
 
     AppiumDriver driver;
     DesiredCapabilities cap = new DesiredCapabilities();
-    
+
     protected abstract AppiumDriver createDriver(AppiumDriverLocalService service, String udid, String deviceName);
 
     public AppiumDriver getDriver(AppiumDriverLocalService service, String deviceName, String platform, String udid) {
@@ -18,6 +18,7 @@ public abstract class DriverManager {
             cap.setCapability(MobileCapabilityType.PLATFORM_NAME, platform);
             cap.setCapability(MobileCapabilityType.DEVICE_NAME, deviceName);
             cap.setCapability("udid", udid);
+            cap.setCapability("noReset", true);
             driver = createDriver(service, udid, deviceName);
         }
         return driver;
