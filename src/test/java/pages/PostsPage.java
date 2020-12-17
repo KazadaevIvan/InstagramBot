@@ -45,6 +45,7 @@ public class PostsPage extends BasePage {
                 break;
             case ("Android"):
                 backButton = driver.findElementById(BACK_BUTTON_LOCATOR_ANDROID);
+                break;
         }
         backButton.click();
         return new ProfilePage(driver);

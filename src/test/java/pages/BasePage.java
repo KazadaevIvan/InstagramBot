@@ -26,6 +26,7 @@ abstract public class BasePage {
                 break;
             case ("Android"):
                 searchPageIcon = driver.findElementByAccessibilityId(SEARCH_PAGE_LOCATOR_ANDROID);
+                break;
         }
         searchPageIcon.click();
         return new SearchPage(driver);

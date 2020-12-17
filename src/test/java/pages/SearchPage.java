@@ -32,6 +32,7 @@ public class SearchPage extends BasePage {
                 break;
             case ("Android"):
                 listView = driver.findElementById(LIST_VIEW_LOCATOR_ANDROID);
+                break;
         }
         return listView;
     }
@@ -43,6 +44,7 @@ public class SearchPage extends BasePage {
                 break;
             case ("Android"):
                 searchInput = driver.findElementById(SEARCH_INPUT_LOCATOR_ANDROID);
+                break;
         }
         return searchInput;
     }
@@ -54,6 +56,7 @@ public class SearchPage extends BasePage {
                 break;
             case ("Android"):
                 account = driver.findElementByXPath(String.format(ACCOUNT_NAME_LOCATOR_ANDROID, name));
+                break;
         }
         return account;
     }
@@ -65,6 +68,7 @@ public class SearchPage extends BasePage {
                 break;
             case ("Android"):
                 accountNameList = driver.findElementsByXPath(String.format(ACCOUNT_NAME_LOCATOR_ANDROID, name));
+                break;
         }
         return accountNameList;
     }
@@ -84,13 +88,14 @@ public class SearchPage extends BasePage {
                 break;
             case ("Android"):
                 accountsTab = driver.findElementByXPath(ACCOUNT_TAB_LOCATOR_ANDROID);
+                break;
         }
         accountsTab.click();
         return this;
     }
 
     public SearchPage openSearchResult() {
-        Boolean isFoundElement = getAccountNameList(getSearchInput().getText()).size() > 0;
+        boolean isFoundElement = getAccountNameList(getSearchInput().getText()).size() > 0;
         while (!isFoundElement) {
             AppiumUtils.scrollByCoordinates(driver, getListView(), 0.9);
             isFoundElement = getAccountNameList(getSearchInput().getText()).size() > 0;

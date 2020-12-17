@@ -20,6 +20,7 @@ public class HomePage extends BasePage {
                 break;
             case ("Android"):
                 mainFeed = driver.findElementByAccessibilityId(MAIN_FEED_LOCATOR_ANDROID);
+                break;
         }
         mainFeed.isDisplayed();
         return this;
