@@ -2,29 +2,33 @@ package pages;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
-import io.appium.java_client.pagefactory.AppiumFieldDecorator;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 
 abstract public class BasePage {
+    public static final String SEARCH_PAGE_LOCATOR_IOS = "explore-tab";
+    public static final String SEARCH_PAGE_LOCATOR_ANDROID = "Search and Explore";
+    public MobileElement searchPageIcon;
+
+    String platform;
 
     AppiumDriver<MobileElement> driver;
 
-    private WebDriverWait wait;
-    private static final int TIMEOUT = 30;
-    private static final int POLLING = 100;
-
+    public BasePage(AppiumDriver<MobileElement> driver) {
+        this.driver = driver;
+        platform = (String) driver.getCapabilities().getCapability("platformName");
+    }
 
     abstract public BasePage isPageOpened();
 
-    public BasePage(AppiumDriver<MobileElement> driver) {
-        this.driver = driver;
-        wait = new WebDriverWait(driver, TIMEOUT, POLLING);
-    }
-
-    void initElements(BasePage page){
-        PageFactory.initElements(new AppiumFieldDecorator(driver, Duration.ofSeconds(10)), page);
+    public SearchPage openSearchPage() {
+        switch (platform) {
+            case ("iOS"):
+                searchPageIcon = driver.findElementByAccessibilityId(SEARCH_PAGE_LOCATOR_IOS);
+                break;
+            case ("Android"):
+                searchPageIcon = driver.findElementByAccessibilityId(SEARCH_PAGE_LOCATOR_ANDROID);
+                break;
+        }
+        searchPageIcon.click();
+        return new SearchPage(driver);
     }
 }

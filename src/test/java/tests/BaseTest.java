@@ -6,20 +6,28 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
-import pages.HomePage;
-import pages.SignInPage;
-import pages.SignUpPage;
+import pages.*;
+import utils.PropertyReader;
 import utils.appium.AppiumServerJava;
 import utils.driver.AndroidDriverManager;
 import utils.driver.DriverManager;
 import utils.driver.IOSDriverManager;
 
 public class BaseTest {
+    String email = System.getenv().getOrDefault("email", PropertyReader.getProperty("email"));
+    String password = System.getenv().getOrDefault("password", PropertyReader.getProperty("password"));
+    String profile = System.getenv().getOrDefault("profile", PropertyReader.getProperty("profile"));
+    int numberOfProfilesToFollow = Integer.parseInt(System.getenv().getOrDefault("number.of.profiles.to.follow", PropertyReader.getProperty("number.of.profiles.to.follow")));
+
     AppiumDriverLocalService appiumServer;
     AppiumDriver driver;
     SignUpPage signUpPage;
     SignInPage signInPage;
     HomePage homePage;
+    SearchPage searchPage;
+    ProfilePage profilePage;
+    ProfileFollowsPage profileFollowsPage;
+    PostsPage postsPage;
 
     @Parameters(value = {"deviceName", "platform", "udid"})
     @BeforeMethod
@@ -38,6 +46,10 @@ public class BaseTest {
         signUpPage = new SignUpPage(driver);
         signInPage = new SignInPage(driver);
         homePage = new HomePage(driver);
+        searchPage = new SearchPage(driver);
+        profilePage = new ProfilePage(driver);
+        profileFollowsPage = new ProfileFollowsPage(driver);
+        postsPage = new PostsPage(driver);
     }
 
     @AfterMethod(alwaysRun = true)

@@ -1,4 +1,3 @@
-
 package utils;
 
 import java.io.FileInputStream;
@@ -7,12 +6,12 @@ import java.util.Properties;
 
 public class PropertyManager {
 
-    private static PropertyManager instance;
     private static final Object lock = new Object();
+    private static PropertyManager instance;
     private static String propertyFilePath;
     private static Properties prop;
 
-    public static PropertyManager getInstance () {
+    public static PropertyManager getInstance() {
         propertyFilePath = System.getProperty("user.dir") + "/src/test/resources/application.properties";
         if (instance == null) {
             synchronized (lock) {

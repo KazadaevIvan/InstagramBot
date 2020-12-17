@@ -43,5 +43,4 @@
             <version>${appium.java.client.version}</version>
         </dependency>
     </dependencies>
-
 </project>

@@ -11,8 +11,8 @@ public class LoginTest extends BaseTest {
                 .clickSignIn();
         signInPage
                 .isPageOpened()
-                .typeEmail("")
-                .typePassword("")
+                .typeEmail(email)
+                .typePassword(password)
                 .clickLogInButton();
         homePage
                 .isPageOpened();
