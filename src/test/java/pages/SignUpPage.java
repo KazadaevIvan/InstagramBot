@@ -2,17 +2,18 @@ package pages;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.support.ui.FluentWait;
 
+import java.time.Duration;
 import java.util.List;
 
 public class SignUpPage extends BasePage {
     public static final String LOG_IN_BUTTON_LOCATOR_IOS = "//XCUIElementTypeStaticText[@name='Sign In']";
     public static final String LOG_IN_BUTTON_LOCATOR_ANDROID = "com.instagram.android:id/log_in_button";
-    public MobileElement logInButton;
-
-
     public static final String SIGN_UP_WITH_EMAIL_BUTTON_LOCATOR_IOS = "//XCUIElementTypeStaticText[@name='Sign up with Phone or Email']";
     public static final String SIGN_UP_WITH_EMAIL_BUTTON_LOCATOR_ANDROID = "com.instagram.android:id/sign_up_with_email_or_phone";
+    public MobileElement logInButton;
     List<MobileElement> signUpWithEmailButtonList;
 
     public SignUpPage(AppiumDriver<MobileElement> driver) {
@@ -28,6 +29,11 @@ public class SignUpPage extends BasePage {
                 signUpWithEmailButtonList = driver.findElementsById(SIGN_UP_WITH_EMAIL_BUTTON_LOCATOR_ANDROID);
                 break;
         }
+        new FluentWait<>(driver)
+                .withTimeout(Duration.ofSeconds(21))
+                .pollingEvery(Duration.ofSeconds(3))
+                .ignoring(StaleElementReferenceException.class)
+                .until(driver -> signUpWithEmailButtonList);
         return signUpWithEmailButtonList;
     }
 
@@ -40,6 +46,11 @@ public class SignUpPage extends BasePage {
                 logInButton = driver.findElementById(LOG_IN_BUTTON_LOCATOR_ANDROID);
                 break;
         }
+        new FluentWait<>(driver)
+                .withTimeout(Duration.ofSeconds(21))
+                .pollingEvery(Duration.ofSeconds(3))
+                .ignoring(StaleElementReferenceException.class)
+                .until(driver -> logInButton);
         return logInButton;
     }
 

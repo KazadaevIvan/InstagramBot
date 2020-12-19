@@ -2,6 +2,10 @@ package pages;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.support.ui.FluentWait;
+
+import java.time.Duration;
 
 public class HomePage extends BasePage {
     public static final String MAIN_FEED_LOCATOR_IOS = "Instagram main feed";
@@ -22,7 +26,11 @@ public class HomePage extends BasePage {
                 mainFeed = driver.findElementByAccessibilityId(MAIN_FEED_LOCATOR_ANDROID);
                 break;
         }
-        mainFeed.isDisplayed();
+        new FluentWait<>(driver)
+                .withTimeout(Duration.ofSeconds(21))
+                .pollingEvery(Duration.ofSeconds(3))
+                .ignoring(StaleElementReferenceException.class)
+                .until(driver -> mainFeed.isDisplayed());
         return this;
     }
 }

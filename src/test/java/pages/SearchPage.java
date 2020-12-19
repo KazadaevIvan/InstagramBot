@@ -2,8 +2,11 @@ package pages;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.support.ui.FluentWait;
 import utils.appium.AppiumUtils;
 
+import java.time.Duration;
 import java.util.List;
 
 public class SearchPage extends BasePage {
@@ -12,7 +15,7 @@ public class SearchPage extends BasePage {
     public static final String SEARCH_INPUT_LOCATOR_IOS = "search-text-input";
     public static final String SEARCH_INPUT_LOCATOR_ANDROID = "com.instagram.android:id/action_bar_search_edit_text";
     public static final String ACCOUNT_TAB_LOCATOR_IOS = "search-user";
-    public static final String ACCOUNT_TAB_LOCATOR_ANDROID = "//android.widget.TextView[@text='Accounts' and @resource-id='com.instagram.android:id/tab_button_name_text']";
+    public static final String ACCOUNT_TAB_LOCATOR_ANDROID = "//android.widget.TextView[@text='ACCOUNTS' and @resource-id='com.instagram.android:id/tab_button_name_text']";
     public static final String LIST_VIEW_LOCATOR_IOS = "//XCUIElementTypeCollectionView";
     public static final String LIST_VIEW_LOCATOR_ANDROID = "android:id/list";
     public List<MobileElement> accountNameList;
@@ -34,6 +37,11 @@ public class SearchPage extends BasePage {
                 listView = driver.findElementById(LIST_VIEW_LOCATOR_ANDROID);
                 break;
         }
+        new FluentWait<>(driver)
+                .withTimeout(Duration.ofSeconds(21))
+                .pollingEvery(Duration.ofSeconds(3))
+                .ignoring(StaleElementReferenceException.class)
+                .until(driver -> listView);
         return listView;
     }
 
@@ -46,6 +54,11 @@ public class SearchPage extends BasePage {
                 searchInput = driver.findElementById(SEARCH_INPUT_LOCATOR_ANDROID);
                 break;
         }
+        new FluentWait<>(driver)
+                .withTimeout(Duration.ofSeconds(21))
+                .pollingEvery(Duration.ofSeconds(3))
+                .ignoring(StaleElementReferenceException.class)
+                .until(driver -> searchInput);
         return searchInput;
     }
 
@@ -58,6 +71,11 @@ public class SearchPage extends BasePage {
                 account = driver.findElementByXPath(String.format(ACCOUNT_NAME_LOCATOR_ANDROID, name));
                 break;
         }
+        new FluentWait<>(driver)
+                .withTimeout(Duration.ofSeconds(21))
+                .pollingEvery(Duration.ofSeconds(3))
+                .ignoring(StaleElementReferenceException.class)
+                .until(driver -> account);
         return account;
     }
 
@@ -70,6 +88,11 @@ public class SearchPage extends BasePage {
                 accountNameList = driver.findElementsByXPath(String.format(ACCOUNT_NAME_LOCATOR_ANDROID, name));
                 break;
         }
+        new FluentWait<>(driver)
+                .withTimeout(Duration.ofSeconds(21))
+                .pollingEvery(Duration.ofSeconds(3))
+                .ignoring(StaleElementReferenceException.class)
+                .until(driver -> accountNameList);
         return accountNameList;
     }
 
@@ -81,6 +104,7 @@ public class SearchPage extends BasePage {
 
     public SearchPage typeSearchInfo(String info) {
         getSearchInput().click();
+        getSearchInput().clear();
         getSearchInput().sendKeys(info);
         switch (platform) {
             case ("iOS"):
@@ -90,6 +114,11 @@ public class SearchPage extends BasePage {
                 accountsTab = driver.findElementByXPath(ACCOUNT_TAB_LOCATOR_ANDROID);
                 break;
         }
+        new FluentWait<>(driver)
+                .withTimeout(Duration.ofSeconds(21))
+                .pollingEvery(Duration.ofSeconds(3))
+                .ignoring(StaleElementReferenceException.class)
+                .until(driver -> accountsTab);
         accountsTab.click();
         return this;
     }
@@ -97,11 +126,10 @@ public class SearchPage extends BasePage {
     public SearchPage openSearchResult() {
         boolean isFoundElement = getAccountNameList(getSearchInput().getText()).size() > 0;
         while (!isFoundElement) {
-            AppiumUtils.scrollByCoordinates(driver, getListView(), 0.9);
+            AppiumUtils.scrollDownByCoordinates(driver, getListView(), 0.9);
             isFoundElement = getAccountNameList(getSearchInput().getText()).size() > 0;
         }
         getAccount(getSearchInput().getText()).click();
         return this;
     }
-
 }
