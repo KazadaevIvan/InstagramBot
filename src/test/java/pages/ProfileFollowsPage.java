@@ -78,7 +78,6 @@ public class ProfileFollowsPage extends BasePage {
         int checker = 0;
         for (int i = 0; i < 500; i++) {
             for (MobileElement el : getUsersList()) {
-                System.out.println(el.getText());
                 if (!names.contains(el.getText())) {
                     names.add(el.getText());
                     Files.write(Paths.get("src/test/resources/names.txt"), names);
