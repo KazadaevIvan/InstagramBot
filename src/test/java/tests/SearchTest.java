@@ -3,6 +3,9 @@ package tests;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
+import java.util.List;
+
 public class SearchTest extends BaseTest {
     @BeforeMethod
     public void login() {
@@ -27,7 +30,7 @@ public class SearchTest extends BaseTest {
     }
 
     @Test
-    public void searchResultsShouldBeShown() {
+    public void searchResultsShouldBeShown() throws IOException {
         homePage
                 .openSearchPage();
         searchPage
@@ -37,11 +40,17 @@ public class SearchTest extends BaseTest {
         profilePage
                 .isPageOpened()
                 .openFollowersList();
-        profileFollowsPage
-                .isPageOpened();
-        for (int i = 0; i < numberOfProfilesToFollow; i++) {
+        List<String> listOfProfileToFollow = profileFollowsPage
+                .isPageOpened()
+                .getListOfProfilesToFollow(numberOfProfilesToFollow);
+
+        for (String profile : listOfProfileToFollow) {
             profileFollowsPage
-                    .openProfile();
+                    .openSearchPage();
+            searchPage
+                    .isPageOpened()
+                    .typeSearchInfo(profile)
+                    .openSearchResult();
             profilePage
                     .isPageOpened();
             if (!profilePage.isPrivate()) {
@@ -56,10 +65,7 @@ public class SearchTest extends BaseTest {
             }
             profilePage
                     .isPageOpened()
-                    .clickFollowButton()
-                    .clickBackButton();
-            profileFollowsPage
-                    .isPageOpened();
+                    .clickFollowButton();
         }
     }
 }
