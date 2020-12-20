@@ -9,7 +9,7 @@ import java.util.List;
 public class SearchTest extends BaseTest {
     @BeforeMethod
     public void login() throws IOException {
-        if (locationStrategy.getElementsList("signUpWithEmailButtonsList").size() > 0) {
+        if (signUpPage.isSignUpPage()) {
             signUpPage
                     .isPageOpened()
                     .clickSignIn();
@@ -18,7 +18,7 @@ public class SearchTest extends BaseTest {
                     .typeEmail(email)
                     .typePassword(password)
                     .clickLogInButton();
-        } else if (locationStrategy.getElementsList("loginButtonsList").size() > 0) {
+        } else if (signInPage.isSignInPage()) {
             signInPage
                     .isPageOpened()
                     .typeEmail(email)
