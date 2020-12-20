@@ -1,6 +1,5 @@
 package tests;
 
-import org.json.simple.parser.ParseException;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -9,7 +8,7 @@ import java.util.List;
 
 public class SearchTest extends BaseTest {
     @BeforeMethod
-    public void login() throws IOException, ParseException {
+    public void login() throws IOException {
         if (locationStrategy.getElementsList("signUpWithEmailButtonsList").size() > 0) {
             signUpPage
                     .isPageOpened()
@@ -31,7 +30,7 @@ public class SearchTest extends BaseTest {
     }
 
     @Test
-    public void searchResultsShouldBeShown() throws IOException, ParseException {
+    public void searchResultsShouldBeShown() throws IOException {
         homePage
                 .openSearchPage();
         searchPage

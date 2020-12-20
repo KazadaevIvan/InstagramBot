@@ -2,7 +2,6 @@ package pages;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
-import org.json.simple.parser.ParseException;
 import utils.appium.AppiumUtils;
 
 import java.io.IOException;
@@ -14,7 +13,7 @@ public class SearchPage extends BasePage {
     }
 
     @Override
-    public SearchPage isPageOpened() throws IOException, ParseException {
+    public SearchPage isPageOpened() throws IOException {
         locationStrategy.getElement("searchInput").isDisplayed();
         return this;
     }

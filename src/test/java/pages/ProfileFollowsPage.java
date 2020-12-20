@@ -2,7 +2,6 @@ package pages;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
-import org.json.simple.parser.ParseException;
 import utils.appium.AppiumUtils;
 
 import java.io.IOException;
@@ -17,7 +16,7 @@ public class ProfileFollowsPage extends BasePage {
     }
 
     @Override
-    public ProfileFollowsPage isPageOpened() throws IOException, ParseException {
+    public ProfileFollowsPage isPageOpened() throws IOException {
         locationStrategy.getElement("followersTab").isDisplayed();
         return this;
     }

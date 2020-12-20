@@ -2,7 +2,6 @@ package pages;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
-import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
 
@@ -13,7 +12,7 @@ public class SignUpPage extends BasePage {
     }
 
     @Override
-    public SignUpPage isPageOpened() throws IOException, ParseException {
+    public SignUpPage isPageOpened() throws IOException{
         locationStrategy.getElement("signUpButton").isDisplayed();
         return this;
     }

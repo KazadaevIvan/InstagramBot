@@ -2,7 +2,6 @@ package pages;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
-import org.json.simple.parser.ParseException;
 import utils.LocationStrategy;
 
 import java.io.IOException;
@@ -18,7 +17,7 @@ abstract public class BasePage {
         locationStrategy = new LocationStrategy(driver);
     }
 
-    abstract public BasePage isPageOpened() throws IOException, ParseException;
+    abstract public BasePage isPageOpened() throws IOException;
 
     public SearchPage openSearchPage() throws IOException {
         locationStrategy.getElement("searchPageIcon").click();

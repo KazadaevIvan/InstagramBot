@@ -1,6 +1,5 @@
 package tests;
 
-import org.json.simple.parser.ParseException;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
@@ -8,7 +7,7 @@ import java.io.IOException;
 public class LoginTest extends BaseTest {
 
     @Test
-    public void userShouldBeLoggedInWithEmail() throws IOException, ParseException {
+    public void userShouldBeLoggedInWithEmail() throws IOException {
         signUpPage
                 .isPageOpened()
                 .clickSignIn();
