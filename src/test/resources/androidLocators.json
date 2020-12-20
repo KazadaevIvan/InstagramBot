@@ -1,0 +1,122 @@
+[
+  {
+    "name": "signUpButton",
+    "type": "id",
+    "value": "com.instagram.android:id/log_in_button"
+  },
+  {
+    "name": "userNameInput",
+    "type": "id",
+    "value": "com.instagram.android:id/login_username"
+  },
+  {
+    "name": "passwordInput",
+    "type": "id",
+    "value": "com.instagram.android:id/password"
+  },
+  {
+    "name": "loginButton",
+    "type": "id",
+    "value": "com.instagram.android:id/next_button"
+  },
+  {
+    "name": "mainFeed",
+    "type": "accessibilityId",
+    "value": "Scroll to top"
+  },
+  {
+    "name": "likeButton",
+    "type": "id",
+    "value": "com.instagram.android:id/row_feed_button_like"
+  },
+  {
+    "name": "backButton",
+    "type": "id",
+    "value": "com.instagram.android:id/action_bar_button_back"
+  },
+  {
+    "name": "followersTab",
+    "type": "xpath",
+    "value": "//android.widget.TextView[contains(@text,'Followers')]"
+  },
+  {
+    "name": "followers",
+    "type": "id",
+    "value": "com.instagram.android:id/row_profile_header_followers_container"
+  },
+  {
+    "name": "followButton",
+    "type": "xpath",
+    "value": "(//android.widget.Button[@text='Follow'])[1]"
+  },
+  {
+    "name": "postsNumber",
+    "type": "id",
+    "value": "com.instagram.android:id/row_profile_header_textview_post_count"
+  },
+  {
+    "name": "searchInput",
+    "type": "id",
+    "value": "com.instagram.android:id/action_bar_search_edit_text"
+  },
+  {
+    "name": "accountTab",
+    "type": "xpath",
+    "value": "//android.widget.TextView[@text='ACCOUNTS' and @resource-id='com.instagram.android:id/tab_button_name_text']"
+  },
+  {
+    "name": "searchPageIcon",
+    "type": "accessibilityId",
+    "value": "Search and Explore"
+  },
+  {
+    "name": "profileFollowsPageListView",
+    "type": "id",
+    "value": "android:id/list"
+  },
+  {
+    "name": "profilePageListView",
+    "type": "id",
+    "value": "com.instagram.android:id/layout_container_main"
+  },
+  {
+    "name": "photosList",
+    "type": "xpathList",
+    "value": "//androidx.recyclerview.widget.RecyclerView/android.widget.LinearLayout/android.widget.ImageView"
+  },
+  {
+    "name": "privateAccountTitleList",
+    "type": "xpathList",
+    "value": "//*[@text='This Account is Private']"
+  },
+  {
+    "name": "postsNumber",
+    "type": "id",
+    "value": "com.instagram.android:id/row_profile_header_textview_post_count"
+  },
+  {
+    "name": "searchPageListView",
+    "type": "id",
+    "value": "android:id/list"
+  },
+  {
+    "name": "loginButtonsList",
+    "type": "idList",
+    "value": "com.instagram.android:id/next_button"
+  },
+  {
+    "name": "signUpWithEmailButtonsList",
+    "type": "idList",
+    "value": "com.instagram.android:id/sign_up_with_email_or_phone"
+  },
+  {
+    "name": "accountName",
+    "type": "xpath",
+    "value": "//android.widget.TextView[@text='%s' and @resource-id='com.instagram.android:id/row_search_user_username']"
+  },
+  {
+    "name": "usersList",
+    "type": "idList",
+    "value": "com.instagram.android:id/follow_list_username"
+  }
+]
