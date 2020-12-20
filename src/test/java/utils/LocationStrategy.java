@@ -4,7 +4,9 @@ import com.jayway.jsonpath.JsonPath;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.List;
 
 public class LocationStrategy {
@@ -20,7 +22,7 @@ public class LocationStrategy {
         BufferedReader bufferedReader = new BufferedReader(new FileReader(filePath));
         StringBuilder builder = new StringBuilder();
         String line;
-        while ((line = bufferedReader.readLine()) != null){
+        while ((line = bufferedReader.readLine()) != null) {
             builder.append(line);
         }
         return builder.toString();
@@ -62,9 +64,12 @@ public class LocationStrategy {
 
     public String getFileContent() throws IOException {
         switch (platform) {
-            case ("iOS"): return fileReader("src/test/resources/iOSLocators.json");
-            case ("Android"): return fileReader("src/test/resources/androidLocators.json");
-            default: return null;
+            case ("iOS"):
+                return fileReader("src/test/resources/iOSLocators.json");
+            case ("Android"):
+                return fileReader("src/test/resources/androidLocators.json");
+            default:
+                return null;
         }
     }
 
