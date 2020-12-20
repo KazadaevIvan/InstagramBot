@@ -13,7 +13,7 @@ public class SignInPage extends BasePage {
 
     @Override
     public SignInPage isPageOpened() throws IOException {
-        locationStrategy.getElement("loginButton").isDisplayed();
+        waitForElementToAppear(locationStrategy.getElement("loginButton"));
         return this;
     }
 
@@ -32,5 +32,9 @@ public class SignInPage extends BasePage {
     public HomePage clickLogInButton() throws IOException {
         locationStrategy.getElement("loginButton").click();
         return new HomePage(driver);
+    }
+
+    public Boolean isSignInPage() throws IOException {
+        return locationStrategy.getElementsList("loginButtonsList").size() > 0;
     }
 }
