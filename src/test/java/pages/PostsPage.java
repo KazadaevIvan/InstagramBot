@@ -13,7 +13,7 @@ public class PostsPage extends BasePage {
 
     @Override
     public PostsPage isPageOpened() throws IOException {
-        locationStrategy.getElement("likeButton").isDisplayed();
+        waitForElementToAppear(locationStrategy.getElement("likeButton"));
         return this;
     }
 

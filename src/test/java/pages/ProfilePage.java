@@ -13,7 +13,7 @@ public class ProfilePage extends BasePage {
 
     @Override
     public ProfilePage isPageOpened() throws IOException {
-        locationStrategy.getElement("followers").isDisplayed();
+        waitForElementToAppear(locationStrategy.getElement("followers"));
         return this;
     }
 
@@ -23,6 +23,7 @@ public class ProfilePage extends BasePage {
     }
 
     public ProfilePage clickFollowButton() throws IOException {
+        waitForElementToAppear(locationStrategy.getElement("followButton"));
         locationStrategy.getElement("followButton").click();
         return this;
     }

@@ -13,7 +13,7 @@ public class HomePage extends BasePage {
 
     @Override
     public HomePage isPageOpened() throws IOException {
-        locationStrategy.getElement("mainFeed").isDisplayed();
+        waitForElementToAppear(locationStrategy.getElement("mainFeed"));
         return this;
     }
 }

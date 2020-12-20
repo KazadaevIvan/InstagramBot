@@ -17,7 +17,7 @@ public class ProfileFollowsPage extends BasePage {
 
     @Override
     public ProfileFollowsPage isPageOpened() throws IOException {
-        locationStrategy.getElement("followersTab").isDisplayed();
+        waitForElementToAppear(locationStrategy.getElement("followersTab"));
         return this;
     }
 

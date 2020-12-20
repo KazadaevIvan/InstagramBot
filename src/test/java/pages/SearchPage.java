@@ -14,7 +14,7 @@ public class SearchPage extends BasePage {
 
     @Override
     public SearchPage isPageOpened() throws IOException {
-        locationStrategy.getElement("searchInput").isDisplayed();
+        waitForElementToAppear(locationStrategy.getElement("searchInput"));
         return this;
     }
 
