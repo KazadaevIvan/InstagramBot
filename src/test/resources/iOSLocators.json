@@ -1,0 +1,122 @@
+[
+  {
+    "name": "signUpButton",
+    "type": "xpath",
+    "value": "//XCUIElementTypeStaticText[@name='Sign In']"
+  },
+  {
+    "name": "userNameInput",
+    "type": "accessibilityId",
+    "value": "username-field"
+  },
+  {
+    "name": "passwordInput",
+    "type": "accessibilityId",
+    "value": "password-field"
+  },
+  {
+    "name": "loginButton",
+    "type": "accessibilityId",
+    "value": "login-button"
+  },
+  {
+    "name": "mainFeed",
+    "type": "accessibilityId",
+    "value": "Instagram main feed"
+  },
+  {
+    "name": "likeButton",
+    "type": "accessibilityId",
+    "value": "like-button"
+  },
+  {
+    "name": "backButton",
+    "type": "xpath",
+    "value": "//XCUIElementTypeNavigationBar[@name='navigation-bar']/XCUIElementTypeButton[1]"
+  },
+  {
+    "name": "followersTab",
+    "type": "xpath",
+    "value": "//XCUIElementTypeStaticText[contains(@label,'Followers')]"
+  },
+  {
+    "name": "followers",
+    "type": "accessibilityId",
+    "value": "user-detail-header-followers"
+  },
+  {
+    "name": "followButton",
+    "type": "accessibilityId",
+    "value": "user-detail-header-follow-button"
+  },
+  {
+    "name": "postsNumber",
+    "type": "accessibilityId",
+    "value": "user-detail-header-media-button"
+  },
+  {
+    "name": "searchInput",
+    "type": "accessibilityId",
+    "value": "search-text-input"
+  },
+  {
+    "name": "accountTab",
+    "type": "accessibilityId",
+    "value": "search-user"
+  },
+  {
+    "name": "searchPageIcon",
+    "type": "accessibilityId",
+    "value": "explore-tab"
+  },
+  {
+    "name": "profileFollowsPageListView",
+    "type": "accessibilityId",
+    "value": "follow-list"
+  },
+  {
+    "name": "profilePageListView",
+    "type": "xpath",
+    "value": "//XCUIElementTypeCollectionView[@name='profile']"
+  },
+  {
+    "name": "photosList",
+    "type": "xpathList",
+    "value": "//XCUIElementTypeButton[@name='media-thumbnail-cell']"
+  },
+  {
+    "name": "privateAccountTitleList",
+    "type": "accessibilityIdList",
+    "value": "This account is private"
+  },
+  {
+    "name": "postsNumber",
+    "type": "accessibilityId",
+    "value": "user-detail-header-media-button"
+  },
+  {
+    "name": "searchPageListView",
+    "type": "accessibilityId",
+    "value": "//XCUIElementTypeCollectionView"
+  },
+  {
+    "name": "loginButtonsList",
+    "type": "accessibilityIdList",
+    "value": "login-button"
+  },
+  {
+    "name": "signUpWithEmailButtonsList",
+    "type": "xpathList",
+    "value": "//XCUIElementTypeStaticText[@name='Sign up with Phone or Email']"
+  },
+  {
+    "name": "accountName",
+    "type": "xpath",
+    "value": "(//XCUIElementTypeStaticText[@name='%s'])[1]"
+  },
+  {
+    "name": "usersList",
+    "type": "xpathList",
+    "value": "//XCUIElementTypeButton[@name]/preceding-sibling::XCUIElementTypeOther[@name]"
+  }
+]
