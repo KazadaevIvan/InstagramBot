@@ -10,7 +10,7 @@ import java.time.Duration;
 import static io.appium.java_client.touch.offset.PointOption.point;
 
 public class AppiumUtils {
-    public static void scrollByCoordinates(AppiumDriver<MobileElement> driver, MobileElement listView, double startYRation) {
+    public static void scrollDownByCoordinates(AppiumDriver<MobileElement> driver, MobileElement listView, double startYRation) {
         int height = listView.getSize().getHeight();
         int width = listView.getSize().getWidth();
         int startX = width / 2;

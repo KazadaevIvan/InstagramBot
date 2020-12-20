@@ -31,6 +31,7 @@ public class SignInPage extends BasePage {
                 logInButton = driver.findElementById(LOG_IN_BUTTON_LOCATOR_ANDROID);
                 break;
         }
+        waitForElementToAppear(logInButton);
         return logInButton;
     }
 
@@ -61,6 +62,7 @@ public class SignInPage extends BasePage {
                 userNameInput = driver.findElementById(USER_NAME_INPUT_LOCATOR_ANDROID);
                 break;
         }
+        waitForElementToAppear(userNameInput);
         userNameInput.clear();
         userNameInput.sendKeys(email);
         return this;
@@ -75,6 +77,7 @@ public class SignInPage extends BasePage {
                 passwordInput = driver.findElementById(PASSWORD_INPUT_LOCATOR_ANDROID);
                 break;
         }
+        waitForElementToAppear(passwordInput);
         passwordInput.clear();
         passwordInput.sendKeys(password);
         return this;

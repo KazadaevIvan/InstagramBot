@@ -8,11 +8,9 @@ import java.util.List;
 public class SignUpPage extends BasePage {
     public static final String LOG_IN_BUTTON_LOCATOR_IOS = "//XCUIElementTypeStaticText[@name='Sign In']";
     public static final String LOG_IN_BUTTON_LOCATOR_ANDROID = "com.instagram.android:id/log_in_button";
-    public MobileElement logInButton;
-
-
     public static final String SIGN_UP_WITH_EMAIL_BUTTON_LOCATOR_IOS = "//XCUIElementTypeStaticText[@name='Sign up with Phone or Email']";
     public static final String SIGN_UP_WITH_EMAIL_BUTTON_LOCATOR_ANDROID = "com.instagram.android:id/sign_up_with_email_or_phone";
+    public MobileElement logInButton;
     List<MobileElement> signUpWithEmailButtonList;
 
     public SignUpPage(AppiumDriver<MobileElement> driver) {
@@ -40,6 +38,7 @@ public class SignUpPage extends BasePage {
                 logInButton = driver.findElementById(LOG_IN_BUTTON_LOCATOR_ANDROID);
                 break;
         }
+        waitForElementToAppear(logInButton);
         return logInButton;
     }
 

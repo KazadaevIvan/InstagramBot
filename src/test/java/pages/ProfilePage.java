@@ -2,11 +2,8 @@ package pages;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
-import org.openqa.selenium.StaleElementReferenceException;
-import org.openqa.selenium.support.ui.FluentWait;
 import utils.appium.AppiumUtils;
 
-import java.time.Duration;
 import java.util.List;
 
 public class ProfilePage extends BasePage {
@@ -16,18 +13,15 @@ public class ProfilePage extends BasePage {
     public static final String FOLLOW_BUTTON_LOCATOR_ANDROID = "(//android.widget.Button[@text='Follow'])[1]";
     public static final String LIST_VIEW_LOCATOR_IOS = "//XCUIElementTypeCollectionView[@name='profile']";
     public static final String LIST_VIEW_LOCATOR_ANDROID = "com.instagram.android:id/layout_container_main";
-    public static final String BACK_BUTTON_LOCATOR_IOS = "//XCUIElementTypeNavigationBar/XCUIElementTypeButton[1]";
-    public static final String BACK_BUTTON_LOCATOR_ANDROID = "com.instagram.android:id/action_bar_button_back";
     public static final String PHOTO_LIST_LOCATOR_IOS = "//XCUIElementTypeButton[@name='media-thumbnail-cell']";
     public static final String PHOTO_LIST_LOCATOR_ANDROID = "//androidx.recyclerview.widget.RecyclerView/android.widget.LinearLayout/android.widget.ImageView";
     public static final String PRIVATE_ACCOUNT_TITLE_LOCATOR_IOS = "This account is private";
-    public static final String PRIVATE_ACCOUNT_TITLE_LOCATOR_ANDROID = "com.instagram.android:id/row_profile_header_empty_profile_notice_container";
+    public static final String PRIVATE_ACCOUNT_TITLE_LOCATOR_ANDROID = "//*[@text='This Account is Private']";
     public static final String POSTS_NUMBER_LOCATOR_IOS = "user-detail-header-media-button";
     public static final String POSTS_NUMBER_LOCATOR_ANDROID = "com.instagram.android:id/row_profile_header_textview_post_count";
     public MobileElement followers;
     public MobileElement followButton;
     public MobileElement listView;
-    public MobileElement backButton;
     public List<MobileElement> photoList;
     public List<MobileElement> privateAccountTitle;
     public MobileElement postsNumber;
@@ -45,6 +39,7 @@ public class ProfilePage extends BasePage {
                 followers = driver.findElementById(FOLLOWERS_LOCATOR_ANDROID);
                 break;
         }
+        waitForElementToAppear(followers);
         return followers;
     }
 
@@ -57,6 +52,7 @@ public class ProfilePage extends BasePage {
                 listView = driver.findElementById(LIST_VIEW_LOCATOR_ANDROID);
                 break;
         }
+        waitForElementToAppear(listView);
         return listView;
     }
 
@@ -74,11 +70,6 @@ public class ProfilePage extends BasePage {
 
     @Override
     public ProfilePage isPageOpened() {
-        new FluentWait<>(driver)
-                .withTimeout(Duration.ofSeconds(21))
-                .pollingEvery(Duration.ofSeconds(3))
-                .ignoring(StaleElementReferenceException.class)
-                .until(driver -> getFollowers());
         getFollowers().isDisplayed();
         return this;
     }
@@ -97,6 +88,7 @@ public class ProfilePage extends BasePage {
                 followButton = driver.findElementByXPath(FOLLOW_BUTTON_LOCATOR_ANDROID);
                 break;
         }
+        waitForElementToAppear(followButton);
         followButton.click();
         return this;
     }
@@ -104,24 +96,11 @@ public class ProfilePage extends BasePage {
     public PostsPage openFirstPhoto() {
         boolean isFoundElement = getPhotoList().size() > 0;
         while (!isFoundElement) {
-            AppiumUtils.scrollByCoordinates(driver, getListView(), 0.9);
+            AppiumUtils.scrollDownByCoordinates(driver, getListView(), 0.9);
             isFoundElement = getPhotoList().size() > 0;
         }
         getPhotoList().get(0).click();
         return new PostsPage(driver);
-    }
-
-    public ProfileFollowsPage clickBackButton() {
-        switch (platform) {
-            case ("iOS"):
-                backButton = driver.findElementByXPath(BACK_BUTTON_LOCATOR_IOS);
-                break;
-            case ("Android"):
-                backButton = driver.findElementById(BACK_BUTTON_LOCATOR_ANDROID);
-                break;
-        }
-        backButton.click();
-        return new ProfileFollowsPage(driver);
     }
 
     public Boolean isPrivate() {
@@ -130,7 +109,7 @@ public class ProfilePage extends BasePage {
                 privateAccountTitle = driver.findElementsByAccessibilityId(PRIVATE_ACCOUNT_TITLE_LOCATOR_IOS);
                 break;
             case ("Android"):
-                privateAccountTitle = driver.findElementsById(PRIVATE_ACCOUNT_TITLE_LOCATOR_ANDROID);
+                privateAccountTitle = driver.findElementsByXPath(PRIVATE_ACCOUNT_TITLE_LOCATOR_ANDROID);
                 break;
         }
         return privateAccountTitle.size() > 0;
@@ -147,6 +126,5 @@ public class ProfilePage extends BasePage {
             default:
                 return null;
         }
-
     }
 }

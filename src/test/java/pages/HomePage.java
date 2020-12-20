@@ -22,7 +22,7 @@ public class HomePage extends BasePage {
                 mainFeed = driver.findElementByAccessibilityId(MAIN_FEED_LOCATOR_ANDROID);
                 break;
         }
-        mainFeed.isDisplayed();
+        waitForElementToAppear(searchPageIcon);
         return this;
     }
 }

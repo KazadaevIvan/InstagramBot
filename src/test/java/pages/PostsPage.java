@@ -24,6 +24,7 @@ public class PostsPage extends BasePage {
                 likeButton = driver.findElementById(LIKE_BUTTON_LOCATOR_ANDROID);
                 break;
         }
+        waitForElementToAppear(likeButton);
         return likeButton;
     }
 
@@ -47,6 +48,7 @@ public class PostsPage extends BasePage {
                 backButton = driver.findElementById(BACK_BUTTON_LOCATOR_ANDROID);
                 break;
         }
+        waitForElementToAppear(backButton);
         backButton.click();
         return new ProfilePage(driver);
     }
