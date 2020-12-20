@@ -13,12 +13,16 @@ public class SignUpPage extends BasePage {
 
     @Override
     public SignUpPage isPageOpened() throws IOException{
-        locationStrategy.getElement("signUpButton").isDisplayed();
+        waitForElementToAppear(locationStrategy.getElement("signUpButton"));
         return this;
     }
 
     public SignInPage clickSignIn() throws IOException {
         locationStrategy.getElement("signUpButton").click();
         return new SignInPage(driver);
+    }
+
+    public Boolean isSignUpPage() throws IOException {
+        return locationStrategy.getElementsList("signUpWithEmailButtonsList").size() > 0;
     }
 }
