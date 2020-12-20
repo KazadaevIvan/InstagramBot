@@ -26,6 +26,7 @@ abstract public class BasePage {
                 .pollingEvery(Duration.ofSeconds(POLLING))
                 .ignoring(StaleElementReferenceException.class);
         platform = (String) driver.getCapabilities().getCapability("platformName");
+        locationStrategy = new LocationStrategy(driver);
     }
 
     boolean waitForElementToAppear(MobileElement element) {
