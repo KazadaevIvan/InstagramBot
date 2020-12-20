@@ -2,11 +2,8 @@ package pages;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
-import org.openqa.selenium.StaleElementReferenceException;
-import org.openqa.selenium.support.ui.FluentWait;
 import utils.appium.AppiumUtils;
 
-import java.time.Duration;
 import java.util.List;
 
 public class ProfilePage extends BasePage {
@@ -42,11 +39,7 @@ public class ProfilePage extends BasePage {
                 followers = driver.findElementById(FOLLOWERS_LOCATOR_ANDROID);
                 break;
         }
-        new FluentWait<>(driver)
-                .withTimeout(Duration.ofSeconds(21))
-                .pollingEvery(Duration.ofSeconds(3))
-                .ignoring(StaleElementReferenceException.class)
-                .until(driver -> followers);
+        waitForElementToAppear(followers);
         return followers;
     }
 
@@ -59,11 +52,7 @@ public class ProfilePage extends BasePage {
                 listView = driver.findElementById(LIST_VIEW_LOCATOR_ANDROID);
                 break;
         }
-        new FluentWait<>(driver)
-                .withTimeout(Duration.ofSeconds(21))
-                .pollingEvery(Duration.ofSeconds(3))
-                .ignoring(StaleElementReferenceException.class)
-                .until(driver -> listView);
+        waitForElementToAppear(listView);
         return listView;
     }
 
@@ -76,11 +65,6 @@ public class ProfilePage extends BasePage {
                 photoList = driver.findElementsByXPath(PHOTO_LIST_LOCATOR_ANDROID);
                 break;
         }
-        new FluentWait<>(driver)
-                .withTimeout(Duration.ofSeconds(21))
-                .pollingEvery(Duration.ofSeconds(3))
-                .ignoring(StaleElementReferenceException.class)
-                .until(driver -> photoList);
         return photoList;
     }
 
@@ -104,11 +88,7 @@ public class ProfilePage extends BasePage {
                 followButton = driver.findElementByXPath(FOLLOW_BUTTON_LOCATOR_ANDROID);
                 break;
         }
-        new FluentWait<>(driver)
-                .withTimeout(Duration.ofSeconds(21))
-                .pollingEvery(Duration.ofSeconds(3))
-                .ignoring(StaleElementReferenceException.class)
-                .until(driver -> followButton);
+        waitForElementToAppear(followButton);
         followButton.click();
         return this;
     }

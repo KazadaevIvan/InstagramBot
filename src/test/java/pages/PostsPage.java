@@ -2,10 +2,6 @@ package pages;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
-import org.openqa.selenium.StaleElementReferenceException;
-import org.openqa.selenium.support.ui.FluentWait;
-
-import java.time.Duration;
 
 public class PostsPage extends BasePage {
     public static final String LIKE_BUTTON_LOCATOR_IOS = "like-button";
@@ -28,11 +24,7 @@ public class PostsPage extends BasePage {
                 likeButton = driver.findElementById(LIKE_BUTTON_LOCATOR_ANDROID);
                 break;
         }
-        new FluentWait<>(driver)
-                .withTimeout(Duration.ofSeconds(21))
-                .pollingEvery(Duration.ofSeconds(3))
-                .ignoring(StaleElementReferenceException.class)
-                .until(driver -> likeButton.isDisplayed());
+        waitForElementToAppear(likeButton);
         return likeButton;
     }
 
@@ -56,11 +48,7 @@ public class PostsPage extends BasePage {
                 backButton = driver.findElementById(BACK_BUTTON_LOCATOR_ANDROID);
                 break;
         }
-        new FluentWait<>(driver)
-                .withTimeout(Duration.ofSeconds(21))
-                .pollingEvery(Duration.ofSeconds(3))
-                .ignoring(StaleElementReferenceException.class)
-                .until(driver -> backButton.isDisplayed());
+        waitForElementToAppear(backButton);
         backButton.click();
         return new ProfilePage(driver);
     }

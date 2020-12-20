@@ -2,10 +2,7 @@ package pages;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
-import org.openqa.selenium.StaleElementReferenceException;
-import org.openqa.selenium.support.ui.FluentWait;
 
-import java.time.Duration;
 import java.util.List;
 
 public class SignInPage extends BasePage {
@@ -34,11 +31,7 @@ public class SignInPage extends BasePage {
                 logInButton = driver.findElementById(LOG_IN_BUTTON_LOCATOR_ANDROID);
                 break;
         }
-        new FluentWait<>(driver)
-                .withTimeout(Duration.ofSeconds(21))
-                .pollingEvery(Duration.ofSeconds(3))
-                .ignoring(StaleElementReferenceException.class)
-                .until(driver -> logInButton);
+        waitForElementToAppear(logInButton);
         return logInButton;
     }
 
@@ -51,11 +44,6 @@ public class SignInPage extends BasePage {
                 loginButtonList = driver.findElementsById(LOG_IN_BUTTON_LOCATOR_ANDROID);
                 break;
         }
-        new FluentWait<>(driver)
-                .withTimeout(Duration.ofSeconds(21))
-                .pollingEvery(Duration.ofSeconds(3))
-                .ignoring(StaleElementReferenceException.class)
-                .until(driver -> loginButtonList);
         return loginButtonList;
     }
 
@@ -74,11 +62,7 @@ public class SignInPage extends BasePage {
                 userNameInput = driver.findElementById(USER_NAME_INPUT_LOCATOR_ANDROID);
                 break;
         }
-        new FluentWait<>(driver)
-                .withTimeout(Duration.ofSeconds(21))
-                .pollingEvery(Duration.ofSeconds(3))
-                .ignoring(StaleElementReferenceException.class)
-                .until(driver -> userNameInput);
+        waitForElementToAppear(userNameInput);
         userNameInput.clear();
         userNameInput.sendKeys(email);
         return this;
@@ -93,11 +77,7 @@ public class SignInPage extends BasePage {
                 passwordInput = driver.findElementById(PASSWORD_INPUT_LOCATOR_ANDROID);
                 break;
         }
-        new FluentWait<>(driver)
-                .withTimeout(Duration.ofSeconds(21))
-                .pollingEvery(Duration.ofSeconds(3))
-                .ignoring(StaleElementReferenceException.class)
-                .until(driver -> passwordInput);
+        waitForElementToAppear(passwordInput);
         passwordInput.clear();
         passwordInput.sendKeys(password);
         return this;

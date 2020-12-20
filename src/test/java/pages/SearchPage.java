@@ -2,11 +2,8 @@ package pages;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
-import org.openqa.selenium.StaleElementReferenceException;
-import org.openqa.selenium.support.ui.FluentWait;
 import utils.appium.AppiumUtils;
 
-import java.time.Duration;
 import java.util.List;
 
 public class SearchPage extends BasePage {
@@ -37,11 +34,7 @@ public class SearchPage extends BasePage {
                 listView = driver.findElementById(LIST_VIEW_LOCATOR_ANDROID);
                 break;
         }
-        new FluentWait<>(driver)
-                .withTimeout(Duration.ofSeconds(21))
-                .pollingEvery(Duration.ofSeconds(3))
-                .ignoring(StaleElementReferenceException.class)
-                .until(driver -> listView);
+        waitForElementToAppear(listView);
         return listView;
     }
 
@@ -54,11 +47,7 @@ public class SearchPage extends BasePage {
                 searchInput = driver.findElementById(SEARCH_INPUT_LOCATOR_ANDROID);
                 break;
         }
-        new FluentWait<>(driver)
-                .withTimeout(Duration.ofSeconds(21))
-                .pollingEvery(Duration.ofSeconds(3))
-                .ignoring(StaleElementReferenceException.class)
-                .until(driver -> searchInput);
+        waitForElementToAppear(searchInput);
         return searchInput;
     }
 
@@ -71,11 +60,7 @@ public class SearchPage extends BasePage {
                 account = driver.findElementByXPath(String.format(ACCOUNT_NAME_LOCATOR_ANDROID, name));
                 break;
         }
-        new FluentWait<>(driver)
-                .withTimeout(Duration.ofSeconds(21))
-                .pollingEvery(Duration.ofSeconds(3))
-                .ignoring(StaleElementReferenceException.class)
-                .until(driver -> account);
+        waitForElementToAppear(account);
         return account;
     }
 
@@ -88,11 +73,6 @@ public class SearchPage extends BasePage {
                 accountNameList = driver.findElementsByXPath(String.format(ACCOUNT_NAME_LOCATOR_ANDROID, name));
                 break;
         }
-        new FluentWait<>(driver)
-                .withTimeout(Duration.ofSeconds(21))
-                .pollingEvery(Duration.ofSeconds(3))
-                .ignoring(StaleElementReferenceException.class)
-                .until(driver -> accountNameList);
         return accountNameList;
     }
 
@@ -114,11 +94,7 @@ public class SearchPage extends BasePage {
                 accountsTab = driver.findElementByXPath(ACCOUNT_TAB_LOCATOR_ANDROID);
                 break;
         }
-        new FluentWait<>(driver)
-                .withTimeout(Duration.ofSeconds(21))
-                .pollingEvery(Duration.ofSeconds(3))
-                .ignoring(StaleElementReferenceException.class)
-                .until(driver -> accountsTab);
+        waitForElementToAppear(accountsTab);
         accountsTab.click();
         return this;
     }

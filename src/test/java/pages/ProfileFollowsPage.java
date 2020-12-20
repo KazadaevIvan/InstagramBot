@@ -2,14 +2,11 @@ package pages;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
-import org.openqa.selenium.StaleElementReferenceException;
-import org.openqa.selenium.support.ui.FluentWait;
 import utils.appium.AppiumUtils;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.time.Duration;
 import java.util.List;
 
 public class ProfileFollowsPage extends BasePage {
@@ -35,11 +32,7 @@ public class ProfileFollowsPage extends BasePage {
                 listView = driver.findElementById(LIST_VIEW_LOCATOR_ANDROID);
                 break;
         }
-        new FluentWait<>(driver)
-                .withTimeout(Duration.ofSeconds(21))
-                .pollingEvery(Duration.ofSeconds(3))
-                .ignoring(StaleElementReferenceException.class)
-                .until(driver -> listView.isDisplayed());
+        waitForElementToAppear(listView);
         return listView;
     }
 
@@ -53,11 +46,7 @@ public class ProfileFollowsPage extends BasePage {
                 followersTab = driver.findElementByXPath(FOLLOWERS_TAB_LOCATOR_ANDROID);
                 break;
         }
-        new FluentWait<>(driver)
-                .withTimeout(Duration.ofSeconds(21))
-                .pollingEvery(Duration.ofSeconds(3))
-                .ignoring(StaleElementReferenceException.class)
-                .until(driver -> followersTab.isDisplayed());
+        waitForElementToAppear(followersTab);
         return this;
     }
 
