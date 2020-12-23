@@ -13,6 +13,7 @@
         <maven.compiler.plugin.version>3.8.0</maven.compiler.plugin.version>
         <testng.version>7.0.0</testng.version>
         <appium.java.client.version>7.0.0</appium.java.client.version>
+        <jsonpath.version>2.4.0</jsonpath.version>
     </properties>
 
     <build>
@@ -41,6 +42,12 @@
             <groupId>io.appium</groupId>
             <artifactId>java-client</artifactId>
             <version>${appium.java.client.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.jayway.jsonpath</groupId>
+            <artifactId>json-path</artifactId>
+            <version>${jsonpath.version}</version>
         </dependency>
     </dependencies>
 </project>

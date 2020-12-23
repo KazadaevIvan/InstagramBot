@@ -1,12 +1,14 @@
 package tests;
 
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import pages.*;
+import utils.LocationStrategy;
 import utils.PropertyReader;
 import utils.appium.AppiumServerJava;
 import utils.driver.AndroidDriverManager;
@@ -20,7 +22,8 @@ public class BaseTest {
     int numberOfProfilesToFollow = Integer.parseInt(System.getenv().getOrDefault("number.of.profiles.to.follow", PropertyReader.getProperty("number.of.profiles.to.follow")));
 
     AppiumDriverLocalService appiumServer;
-    AppiumDriver driver;
+    AppiumDriver<MobileElement> driver;
+    LocationStrategy locationStrategy;
     SignUpPage signUpPage;
     SignInPage signInPage;
     HomePage homePage;
@@ -50,6 +53,7 @@ public class BaseTest {
         profilePage = new ProfilePage(driver);
         profileFollowsPage = new ProfileFollowsPage(driver);
         postsPage = new PostsPage(driver);
+        locationStrategy = new LocationStrategy(driver);
     }
 
     @AfterMethod(alwaysRun = true)

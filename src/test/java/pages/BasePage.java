@@ -6,18 +6,18 @@ import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
+import utils.LocationStrategy;
 
+import java.io.IOException;
 import java.time.Duration;
 
 abstract public class BasePage {
-    public static final String SEARCH_PAGE_LOCATOR_IOS = "explore-tab";
-    public static final String SEARCH_PAGE_LOCATOR_ANDROID = "Search and Explore";
     private static final int TIMEOUT = 33;
     private static final int POLLING = 3;
-    public MobileElement searchPageIcon;
     String platform;
     AppiumDriver<MobileElement> driver;
-    private FluentWait<AppiumDriver<MobileElement>> wait;
+    private final FluentWait<AppiumDriver<MobileElement>> wait;
+    LocationStrategy locationStrategy;
 
     public BasePage(AppiumDriver<MobileElement> driver) {
         this.driver = driver;
@@ -26,9 +26,8 @@ abstract public class BasePage {
                 .pollingEvery(Duration.ofSeconds(POLLING))
                 .ignoring(StaleElementReferenceException.class);
         platform = (String) driver.getCapabilities().getCapability("platformName");
+        locationStrategy = new LocationStrategy(driver);
     }
-
-    abstract public BasePage isPageOpened();
 
     boolean waitForElementToAppear(MobileElement element) {
         try {
@@ -39,17 +38,11 @@ abstract public class BasePage {
         }
     }
 
-    public SearchPage openSearchPage() {
-        switch (platform) {
-            case ("iOS"):
-                searchPageIcon = driver.findElementByAccessibilityId(SEARCH_PAGE_LOCATOR_IOS);
-                break;
-            case ("Android"):
-                searchPageIcon = driver.findElementByAccessibilityId(SEARCH_PAGE_LOCATOR_ANDROID);
-                break;
-        }
-        waitForElementToAppear(searchPageIcon);
-        searchPageIcon.click();
+    abstract public BasePage isPageOpened() throws IOException;
+
+    public SearchPage openSearchPage() throws IOException {
+        waitForElementToAppear(locationStrategy.getElement("searchPageIcon"));
+        locationStrategy.getElement("searchPageIcon").click();
         return new SearchPage(driver);
     }
 }

@@ -8,8 +8,8 @@ import java.util.List;
 
 public class SearchTest extends BaseTest {
     @BeforeMethod
-    public void login() {
-        if (signUpPage.getSignUpWithEmailButtonList().size() > 0) {
+    public void login() throws IOException {
+        if (signUpPage.isSignUpPage()) {
             signUpPage
                     .isPageOpened()
                     .clickSignIn();
@@ -18,7 +18,7 @@ public class SearchTest extends BaseTest {
                     .typeEmail(email)
                     .typePassword(password)
                     .clickLogInButton();
-        } else if (signInPage.getLogInButtonList().size() > 0) {
+        } else if (signInPage.isSignInPage()) {
             signInPage
                     .isPageOpened()
                     .typeEmail(email)

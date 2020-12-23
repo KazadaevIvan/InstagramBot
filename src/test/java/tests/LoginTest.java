@@ -2,10 +2,12 @@ package tests;
 
 import org.testng.annotations.Test;
 
+import java.io.IOException;
+
 public class LoginTest extends BaseTest {
 
     @Test
-    public void userShouldBeLoggedInWithEmail() {
+    public void userShouldBeLoggedInWithEmail() throws IOException {
         signUpPage
                 .isPageOpened()
                 .clickSignIn();
