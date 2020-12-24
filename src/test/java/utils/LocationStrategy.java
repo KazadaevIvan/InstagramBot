@@ -10,9 +10,6 @@ import java.io.IOException;
 import java.util.List;
 
 public class LocationStrategy {
-    AppiumDriver<MobileElement> driver;
-    String platform;
-
     public static String fileContentIOS;
     public static String fileContentAndroid;
 
@@ -24,6 +21,9 @@ public class LocationStrategy {
             e.printStackTrace();
         }
     }
+
+    AppiumDriver<MobileElement> driver;
+    String platform;
 
     public LocationStrategy(AppiumDriver<MobileElement> driver) {
         this.driver = driver;
