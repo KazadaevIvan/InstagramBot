@@ -18,7 +18,7 @@ public class SearchPage extends BasePage {
         return this;
     }
 
-    public SearchPage typeSearchInfo(String info) throws IOException {
+    public SearchPage typeSearchInfo(String info) {
         locationStrategy.getElement("searchInput").click();
         locationStrategy.getElement("searchInput").clear();
         locationStrategy.getElement("searchInput").sendKeys(info);
@@ -26,7 +26,7 @@ public class SearchPage extends BasePage {
         return this;
     }
 
-    public SearchPage openSearchResult() throws IOException {
+    public SearchPage openSearchResult() {
         boolean isFoundElement = locationStrategy.getElementsList("accountName", locationStrategy.getElement("searchInput").getText()).size() > 0;
         while (!isFoundElement) {
             AppiumUtils.scrollDownByCoordinates(driver, locationStrategy.getElement("searchPageListView"), 0.9);

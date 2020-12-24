@@ -17,12 +17,12 @@ public class PostsPage extends BasePage {
         return this;
     }
 
-    public PostsPage clickLikeButton() throws IOException {
+    public PostsPage clickLikeButton() {
         locationStrategy.getElement("likeButton").click();
         return this;
     }
 
-    public ProfilePage clickBackButton() throws IOException {
+    public ProfilePage clickBackButton() {
         locationStrategy.getElement("backButton").click();
         return new ProfilePage(driver);
     }

@@ -14,9 +14,9 @@ import java.time.Duration;
 abstract public class BasePage {
     private static final int TIMEOUT = 33;
     private static final int POLLING = 3;
+    private final FluentWait<AppiumDriver<MobileElement>> wait;
     String platform;
     AppiumDriver<MobileElement> driver;
-    private final FluentWait<AppiumDriver<MobileElement>> wait;
     LocationStrategy locationStrategy;
 
     public BasePage(AppiumDriver<MobileElement> driver) {
@@ -40,7 +40,7 @@ abstract public class BasePage {
 
     abstract public BasePage isPageOpened() throws IOException;
 
-    public SearchPage openSearchPage() throws IOException {
+    public SearchPage openSearchPage() {
         waitForElementToAppear(locationStrategy.getElement("searchPageIcon"));
         locationStrategy.getElement("searchPageIcon").click();
         return new SearchPage(driver);

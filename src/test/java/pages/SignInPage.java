@@ -17,24 +17,24 @@ public class SignInPage extends BasePage {
         return this;
     }
 
-    public SignInPage typeEmail(String email) throws IOException {
+    public SignInPage typeEmail(String email) {
         locationStrategy.getElement("userNameInput").clear();
         locationStrategy.getElement("userNameInput").sendKeys(email);
         return this;
     }
 
-    public SignInPage typePassword(String password) throws IOException {
+    public SignInPage typePassword(String password) {
         locationStrategy.getElement("passwordInput").clear();
         locationStrategy.getElement("passwordInput").sendKeys(password);
         return this;
     }
 
-    public HomePage clickLogInButton() throws IOException {
+    public HomePage clickLogInButton() {
         locationStrategy.getElement("loginButton").click();
         return new HomePage(driver);
     }
 
-    public Boolean isSignInPage() throws IOException {
+    public Boolean isSignInPage() {
         return locationStrategy.getElementsList("loginButtonsList").size() > 0;
     }
 }

@@ -17,18 +17,18 @@ public class ProfilePage extends BasePage {
         return this;
     }
 
-    public SearchPage openFollowersList() throws IOException {
+    public SearchPage openFollowersList() {
         locationStrategy.getElement("followers").click();
         return new SearchPage(driver);
     }
 
-    public ProfilePage clickFollowButton() throws IOException {
+    public ProfilePage clickFollowButton() {
         waitForElementToAppear(locationStrategy.getElement("followButton"));
         locationStrategy.getElement("followButton").click();
         return this;
     }
 
-    public PostsPage openFirstPhoto() throws IOException {
+    public PostsPage openFirstPhoto() {
         boolean isFoundElement = locationStrategy.getElementsList("photosList").size() > 0;
         while (!isFoundElement) {
             AppiumUtils.scrollDownByCoordinates(driver, locationStrategy.getElement("profilePageListView"), 0.9);
@@ -38,11 +38,11 @@ public class ProfilePage extends BasePage {
         return new PostsPage(driver);
     }
 
-    public Boolean isPrivate() throws IOException {
+    public Boolean isPrivate() {
         return locationStrategy.getElementsList("privateAccountTitleList").size() > 0;
     }
 
-    public Boolean hasPhotos() throws IOException {
+    public Boolean hasPhotos() {
         switch (platform) {
             case ("iOS"):
                 return Integer.parseInt(locationStrategy.getElement("postsNumber").getText().substring(0, locationStrategy.getElement("postsNumber").getText().indexOf(" "))) > 0;
