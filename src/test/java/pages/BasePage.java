@@ -13,7 +13,7 @@ import java.time.Duration;
 
 abstract public class BasePage {
     private static final int TIMEOUT = 33;
-    private static final int POLLING = 3;
+    private static final int POLLING = 1;
     private final FluentWait<AppiumDriver<MobileElement>> wait;
     String platform;
     AppiumDriver<MobileElement> driver;
