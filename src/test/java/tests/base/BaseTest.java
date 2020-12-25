@@ -3,7 +3,6 @@ package tests.base;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
-import io.qameta.allure.Step;
 import org.testng.annotations.*;
 import pages.HomePage;
 import pages.ProfileFollowsPage;
@@ -33,9 +32,8 @@ public class BaseTest {
     public SearchPageSteps searchPageSteps;
     public ProfilePageSteps profilePageSteps;
 
-    @Step("Open application on '{deviceName}'")
     @Parameters(value = {"deviceName", "platform", "udid"})
-    @BeforeMethod
+    @BeforeMethod(description = "Open application")
     public void setUp(@Optional("xiaomi redmi 4x") String deviceName, @Optional("Android") String platform, @Optional("495dc6217cf4") String udid) {
         DriverManager manager = null;
         switch (platform) {
@@ -56,8 +54,7 @@ public class BaseTest {
         profilePageSteps = new ProfilePageSteps(driver);
     }
 
-    @Step("Close application")
-    @AfterMethod(alwaysRun = true)
+    @AfterMethod(description = "Close application", alwaysRun = true)
     public void tearDown() {
         if (driver != null) {
             driver.quit();
