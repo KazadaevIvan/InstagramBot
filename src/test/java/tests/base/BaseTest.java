@@ -1,13 +1,10 @@
-package tests;
+package tests.base;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.qameta.allure.Step;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
+import org.testng.annotations.*;
 import pages.HomePage;
 import pages.ProfileFollowsPage;
 import steps.LoginSteps;
@@ -20,20 +17,21 @@ import utils.driver.AndroidDriverManager;
 import utils.driver.DriverManager;
 import utils.driver.IOSDriverManager;
 
+@Listeners(TestListener.class)
 public class BaseTest {
-    String email = System.getenv().getOrDefault("email", PropertyReader.getProperty("email"));
-    String password = System.getenv().getOrDefault("password", PropertyReader.getProperty("password"));
-    String profile = System.getenv().getOrDefault("profile", PropertyReader.getProperty("profile"));
-    int numberOfProfilesToFollow = Integer.parseInt(System.getenv().getOrDefault("number.of.profiles.to.follow", PropertyReader.getProperty("number.of.profiles.to.follow")));
+    public String email = System.getenv().getOrDefault("email", PropertyReader.getProperty("email"));
+    public String password = System.getenv().getOrDefault("password", PropertyReader.getProperty("password"));
+    public String profile = System.getenv().getOrDefault("profile", PropertyReader.getProperty("profile"));
+    public int numberOfProfilesToFollow = Integer.parseInt(System.getenv().getOrDefault("number.of.profiles.to.follow", PropertyReader.getProperty("number.of.profiles.to.follow")));
 
-    AppiumDriverLocalService appiumServer;
-    AppiumDriver<MobileElement> driver;
-    LocationStrategy locationStrategy;
-    HomePage homePage;
-    ProfileFollowsPage profileFollowsPage;
-    LoginSteps loginSteps;
-    SearchPageSteps searchPageSteps;
-    ProfilePageSteps profilePageSteps;
+    public AppiumDriverLocalService appiumServer;
+    public AppiumDriver<MobileElement> driver;
+    public LocationStrategy locationStrategy;
+    public HomePage homePage;
+    public ProfileFollowsPage profileFollowsPage;
+    public LoginSteps loginSteps;
+    public SearchPageSteps searchPageSteps;
+    public ProfilePageSteps profilePageSteps;
 
     @Step("Open application on '{deviceName}'")
     @Parameters(value = {"deviceName", "platform", "udid"})
