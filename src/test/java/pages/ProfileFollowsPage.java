@@ -3,6 +3,7 @@ package pages;
 import database.DBConnection;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import io.qameta.allure.Step;
 import utils.appium.AppiumUtils;
 
 import java.util.ArrayList;
@@ -14,12 +15,14 @@ public class ProfileFollowsPage extends BasePage {
         super(driver);
     }
 
+    @Step("Verify Profile Follows page is opened")
     @Override
     public ProfileFollowsPage isPageOpened() {
         waitForElementToAppear(locationStrategy.getElement("followersTab"));
         return this;
     }
 
+    @Step("Get list of profiles to follow")
     public List<String> getListOfProfilesToFollow(int profilesNumber) {
         DBConnection db = new DBConnection();
         db.connect();
