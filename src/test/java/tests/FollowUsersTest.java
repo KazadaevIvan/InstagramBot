@@ -2,6 +2,7 @@ package tests;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import tests.base.BaseTest;
 
 import java.io.IOException;
 

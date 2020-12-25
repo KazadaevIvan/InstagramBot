@@ -4,15 +4,13 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import utils.appium.AppiumUtils;
 
-import java.io.IOException;
-
 public class ProfilePage extends BasePage {
     public ProfilePage(AppiumDriver<MobileElement> driver) {
         super(driver);
     }
 
     @Override
-    public ProfilePage isPageOpened() throws IOException {
+    public ProfilePage isPageOpened() {
         waitForElementToAppear(locationStrategy.getElement("followers"));
         return this;
     }

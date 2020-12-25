@@ -4,8 +4,6 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import utils.appium.AppiumUtils;
 
-import java.io.IOException;
-
 public class SearchPage extends BasePage {
 
     public SearchPage(AppiumDriver<MobileElement> driver) {
@@ -13,7 +11,7 @@ public class SearchPage extends BasePage {
     }
 
     @Override
-    public SearchPage isPageOpened() throws IOException {
+    public SearchPage isPageOpened() {
         waitForElementToAppear(locationStrategy.getElement("searchInput"));
         return this;
     }

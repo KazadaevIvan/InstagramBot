@@ -3,8 +3,6 @@ package pages;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 
-import java.io.IOException;
-
 public class SignInPage extends BasePage {
 
     public SignInPage(AppiumDriver<MobileElement> driver) {
@@ -12,7 +10,7 @@ public class SignInPage extends BasePage {
     }
 
     @Override
-    public SignInPage isPageOpened() throws IOException {
+    public SignInPage isPageOpened() {
         waitForElementToAppear(locationStrategy.getElement("loginButton"));
         return this;
     }

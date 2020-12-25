@@ -5,7 +5,6 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import utils.appium.AppiumUtils;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,12 +15,12 @@ public class ProfileFollowsPage extends BasePage {
     }
 
     @Override
-    public ProfileFollowsPage isPageOpened() throws IOException {
+    public ProfileFollowsPage isPageOpened() {
         waitForElementToAppear(locationStrategy.getElement("followersTab"));
         return this;
     }
 
-    public List<String> getListOfProfilesToFollow(int profilesNumber) throws IOException {
+    public List<String> getListOfProfilesToFollow(int profilesNumber) {
         DBConnection db = new DBConnection();
         db.connect();
         List<String> profileNamesToFollow = new ArrayList<>();
