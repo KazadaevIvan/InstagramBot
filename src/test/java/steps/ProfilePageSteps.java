@@ -7,7 +7,6 @@ import pages.PostsPage;
 import pages.ProfileFollowsPage;
 import pages.ProfilePage;
 
-import java.io.IOException;
 import java.util.List;
 
 public class ProfilePageSteps {
@@ -22,7 +21,7 @@ public class ProfilePageSteps {
     }
 
     @Step("Open first photo and set Like")
-    public ProfilePageSteps attemptToSetLikeToTheFirstPhoto() throws IOException {
+    public ProfilePageSteps attemptToSetLikeToTheFirstPhoto() {
         profilePage
                 .isPageOpened();
         if (!profilePage.isPrivate()) {
@@ -39,7 +38,7 @@ public class ProfilePageSteps {
     }
 
     @Step("Follow profile")
-    public ProfilePageSteps followProfile() throws IOException {
+    public ProfilePageSteps followProfile() {
         profilePage
                 .isPageOpened()
                 .clickFollowButton();
@@ -47,7 +46,7 @@ public class ProfilePageSteps {
     }
 
     @Step("Get list of '{numberOfFollowers}' accounts which follow this profile")
-    public List<String> getFollowers(int numberOfFollowers) throws IOException {
+    public List<String> getFollowers(int numberOfFollowers) {
         profilePage
                 .isPageOpened()
                 .openFollowersList();

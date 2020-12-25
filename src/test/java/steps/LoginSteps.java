@@ -7,8 +7,6 @@ import pages.HomePage;
 import pages.SignInPage;
 import pages.SignUpPage;
 
-import java.io.IOException;
-
 public class LoginSteps {
     private SignUpPage signUpPage;
     private SignInPage signInPage;
@@ -21,7 +19,7 @@ public class LoginSteps {
     }
 
     @Step("Login with email '{email}' and password '{password}'")
-    public LoginSteps login(String email, String password) throws IOException {
+    public LoginSteps login(String email, String password) {
         if (signUpPage.isSignUpPage()) {
             signUpPage
                     .isPageOpened()

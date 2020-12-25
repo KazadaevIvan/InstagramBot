@@ -5,8 +5,6 @@ import io.appium.java_client.MobileElement;
 import io.qameta.allure.Step;
 import pages.SearchPage;
 
-import java.io.IOException;
-
 public class SearchPageSteps {
     private SearchPage searchPage;
 
@@ -15,7 +13,7 @@ public class SearchPageSteps {
     }
 
     @Step("Find and open profile '{profileName}'")
-    public SearchPageSteps findProfile(String profileName) throws IOException {
+    public SearchPageSteps findProfile(String profileName) {
         searchPage
                 .isPageOpened()
                 .typeSearchInfo(profileName)
