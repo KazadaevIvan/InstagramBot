@@ -25,7 +25,7 @@ pipeline {
                 git branch: "${params.BRANCH}", url: 'https://github.com/KazadaevIvan/InstagramBot.git'
 
                 // Run Maven on a Unix agent.
-                sh "mvn clean test -Demail=${email.password} -Dpassword=${params.password} -Dprofile=${params.profile} -Dnumberofprofilestofollow=${params.numberofprofilestofollow} -Duser=${params.user} -DdbPassword=${params.dbPassword} -Dmaven.test.failure.ignore=true"
+                sh "mvn clean test -Demail=${params.email} -Dpassword=${params.password} -Dprofile=${params.profile} -Dnumberofprofilestofollow=${params.numberofprofilestofollow} -Duser=${params.user} -DdbPassword=${params.dbPassword} -Dmaven.test.failure.ignore=true"
 
                 // To run Maven on a Windows agent, use
                 //bat "mvn clean test -Dmaven.test.failure.ignore=true"
