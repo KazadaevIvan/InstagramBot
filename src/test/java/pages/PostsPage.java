@@ -2,8 +2,7 @@ package pages;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
-
-import java.io.IOException;
+import io.qameta.allure.Step;
 
 public class PostsPage extends BasePage {
 
@@ -11,18 +10,21 @@ public class PostsPage extends BasePage {
         super(driver);
     }
 
+    @Step("Verify Posts page is opened")
     @Override
-    public PostsPage isPageOpened() throws IOException {
+    public PostsPage isPageOpened() {
         waitForElementToAppear(locationStrategy.getElement("likeButton"));
         return this;
     }
 
-    public PostsPage clickLikeButton() throws IOException {
+    @Step("Tap LIKE button")
+    public PostsPage clickLikeButton() {
         locationStrategy.getElement("likeButton").click();
         return this;
     }
 
-    public ProfilePage clickBackButton() throws IOException {
+    @Step("Tap BACK button")
+    public ProfilePage clickBackButton() {
         locationStrategy.getElement("backButton").click();
         return new ProfilePage(driver);
     }

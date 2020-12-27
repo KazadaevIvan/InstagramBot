@@ -1,22 +1,13 @@
 package tests;
 
 import org.testng.annotations.Test;
-
-import java.io.IOException;
+import tests.base.BaseTest;
 
 public class LoginTest extends BaseTest {
 
     @Test
-    public void userShouldBeLoggedInWithEmail() throws IOException {
-        signUpPage
-                .isPageOpened()
-                .clickSignIn();
-        signInPage
-                .isPageOpened()
-                .typeEmail(email)
-                .typePassword(password)
-                .clickLogInButton();
-        homePage
-                .isPageOpened();
+    public void userShouldBeLoggedInWithEmail() {
+        loginSteps
+                .login(email, password);
     }
 }

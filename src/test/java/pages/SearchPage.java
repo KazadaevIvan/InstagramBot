@@ -2,9 +2,8 @@ package pages;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import io.qameta.allure.Step;
 import utils.appium.AppiumUtils;
-
-import java.io.IOException;
 
 public class SearchPage extends BasePage {
 
@@ -12,13 +11,15 @@ public class SearchPage extends BasePage {
         super(driver);
     }
 
+    @Step("Verify Search page is opened")
     @Override
-    public SearchPage isPageOpened() throws IOException {
+    public SearchPage isPageOpened() {
         waitForElementToAppear(locationStrategy.getElement("searchInput"));
         return this;
     }
 
-    public SearchPage typeSearchInfo(String info) throws IOException {
+    @Step("Input '{info}' into search input, switch to Accounts tab")
+    public SearchPage typeSearchInfo(String info) {
         locationStrategy.getElement("searchInput").click();
         locationStrategy.getElement("searchInput").clear();
         locationStrategy.getElement("searchInput").sendKeys(info);
@@ -26,7 +27,8 @@ public class SearchPage extends BasePage {
         return this;
     }
 
-    public SearchPage openSearchResult() throws IOException {
+    @Step("Open profile")
+    public SearchPage openSearchResult() {
         boolean isFoundElement = locationStrategy.getElementsList("accountName", locationStrategy.getElement("searchInput").getText()).size() > 0;
         while (!isFoundElement) {
             AppiumUtils.scrollDownByCoordinates(driver, locationStrategy.getElement("searchPageListView"), 0.9);

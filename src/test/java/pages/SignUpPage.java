@@ -2,8 +2,7 @@ package pages;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
-
-import java.io.IOException;
+import io.qameta.allure.Step;
 
 public class SignUpPage extends BasePage {
 
@@ -11,18 +10,20 @@ public class SignUpPage extends BasePage {
         super(driver);
     }
 
+    @Step("Verify Sign Up page is opened")
     @Override
-    public SignUpPage isPageOpened() throws IOException{
+    public SignUpPage isPageOpened() {
         waitForElementToAppear(locationStrategy.getElement("signUpButton"));
         return this;
     }
 
-    public SignInPage clickSignIn() throws IOException {
+    @Step("Tap Already Have An Account")
+    public SignInPage clickSignIn() {
         locationStrategy.getElement("signUpButton").click();
         return new SignInPage(driver);
     }
 
-    public Boolean isSignUpPage() throws IOException {
+    public Boolean isSignUpPage() {
         return locationStrategy.getElementsList("signUpWithEmailButtonsList").size() > 0;
     }
 }

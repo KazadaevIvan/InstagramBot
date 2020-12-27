@@ -2,6 +2,8 @@ package pages;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import io.qameta.allure.Step;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -11,12 +13,13 @@ import utils.LocationStrategy;
 import java.io.IOException;
 import java.time.Duration;
 
+@Log4j2
 abstract public class BasePage {
     private static final int TIMEOUT = 33;
-    private static final int POLLING = 3;
+    private static final int POLLING = 1;
+    private final FluentWait<AppiumDriver<MobileElement>> wait;
     String platform;
     AppiumDriver<MobileElement> driver;
-    private final FluentWait<AppiumDriver<MobileElement>> wait;
     LocationStrategy locationStrategy;
 
     public BasePage(AppiumDriver<MobileElement> driver) {
@@ -34,13 +37,15 @@ abstract public class BasePage {
             wait.until(ExpectedConditions.visibilityOf(element));
             return true;
         } catch (TimeoutException ex) {
+            log.error(ex.getLocalizedMessage());
             return false;
         }
     }
 
     abstract public BasePage isPageOpened() throws IOException;
 
-    public SearchPage openSearchPage() throws IOException {
+    @Step("Open Search page")
+    public SearchPage openSearchPage() {
         waitForElementToAppear(locationStrategy.getElement("searchPageIcon"));
         locationStrategy.getElement("searchPageIcon").click();
         return new SearchPage(driver);
