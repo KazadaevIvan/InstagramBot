@@ -10,7 +10,6 @@ import steps.LoginSteps;
 import steps.ProfilePageSteps;
 import steps.SearchPageSteps;
 import utils.LocationStrategy;
-import utils.PropertyReader;
 import utils.appium.AppiumServerJava;
 import utils.driver.AndroidDriverManager;
 import utils.driver.DriverManager;
@@ -18,10 +17,10 @@ import utils.driver.IOSDriverManager;
 
 @Listeners(TestListener.class)
 public class BaseTest {
-    public String email = System.getenv().getOrDefault("email", PropertyReader.getProperty("email"));
-    public String password = System.getenv().getOrDefault("password", PropertyReader.getProperty("password"));
-    public String profile = System.getenv().getOrDefault("profile", PropertyReader.getProperty("profile"));
-    public int numberOfProfilesToFollow = Integer.parseInt(System.getenv().getOrDefault("number.of.profiles.to.follow", PropertyReader.getProperty("number.of.profiles.to.follow")));
+    public String email = System.getProperty("email");
+    public String password = System.getProperty("password");
+    public String profile = System.getProperty("profile");
+    public int numberOfProfilesToFollow = Integer.parseInt(System.getProperty("numberofprofilestofollow"));
 
     public AppiumDriverLocalService appiumServer;
     public AppiumDriver<MobileElement> driver;
