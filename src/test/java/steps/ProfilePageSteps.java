@@ -24,7 +24,7 @@ public class ProfilePageSteps {
     public ProfilePageSteps attemptToSetLikeToTheFirstPhoto() {
         profilePage
                 .isPageOpened();
-        if (!profilePage.isPrivate()) {
+        if (profilePage.isNotPrivate()) {
             if (profilePage.hasPhotos()) {
                 profilePage
                         .openFirstPhoto();

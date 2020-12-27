@@ -27,20 +27,22 @@ public class ProfileFollowsPage extends BasePage {
         DBConnection db = new DBConnection();
         db.connect();
         List<String> profileNamesToFollow = new ArrayList<>();
-        int checker = 0;
+        int counter = 0;
         String profileName;
         for (int i = 0; i < 500; i++) {
             for (MobileElement el : locationStrategy.getElementsList("usersList")) {
-                profileName = el.getText();
-                if (!db.containsProfileName(profileName)) {
-                    profileNamesToFollow.add(profileName);
-                    db.addProfileName(profileName);
-                    checker++;
+                if (waitForElementToAppear(el)) {
+                    profileName = el.getText();
+                    if (!db.containsProfileName(profileName)) {
+                        profileNamesToFollow.add(profileName);
+                        db.addProfileName(profileName);
+                        counter++;
+                    }
                 }
                 locationStrategy.getElementsList("usersList").remove(el);
-                if (checker == profilesNumber) break;
+                if (counter == profilesNumber) break;
             }
-            if (checker == profilesNumber) break;
+            if (counter == profilesNumber) break;
             AppiumUtils.scrollDownByCoordinates(driver, locationStrategy.getElement("profileFollowsPageListView"), 0.5);
         }
         db.close();
