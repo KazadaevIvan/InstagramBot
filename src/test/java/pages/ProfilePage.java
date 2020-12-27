@@ -32,29 +32,24 @@ public class ProfilePage extends BasePage {
 
     @Step("Open first photo")
     public PostsPage openFirstPhoto() {
-        boolean isFoundElement = locationStrategy.getElementsList("photosList").size() > 0;
+        boolean isFoundElement = !locationStrategy.getElementsList("photosList").isEmpty();
         while (!isFoundElement) {
             AppiumUtils.scrollDownByCoordinates(driver, locationStrategy.getElement("profilePageListView"), 0.9);
-            isFoundElement = locationStrategy.getElementsList("photosList").size() > 0;
+            isFoundElement = !locationStrategy.getElementsList("photosList").isEmpty();
         }
+        waitForElementToAppear(locationStrategy.getElementsList("photosList").get(0));
         locationStrategy.getElementsList("photosList").get(0).click();
         return new PostsPage(driver);
     }
 
-    @Step("Verify profile is private")
-    public Boolean isPrivate() {
-        return locationStrategy.getElementsList("privateAccountTitleList").size() > 0;
+    @Step("Verify profile is not private")
+    public Boolean isNotPrivate() {
+        return locationStrategy.getElementsList("privateAccountTitleList").isEmpty();
     }
 
     @Step("Verify profile has photos")
     public Boolean hasPhotos() {
-        switch (platform) {
-            case ("iOS"):
-                return Integer.parseInt(locationStrategy.getElement("postsNumber").getText().substring(0, locationStrategy.getElement("postsNumber").getText().indexOf(" "))) > 0;
-            case ("Android"):
-                return Integer.parseInt(locationStrategy.getElement("postsNumber").getText()) > 0;
-            default:
-                return null;
-        }
+        waitForElementToAppear(locationStrategy.getElement("postsNumber"));
+        return !locationStrategy.getElement("postsNumber").getText().equals("0");
     }
 }
