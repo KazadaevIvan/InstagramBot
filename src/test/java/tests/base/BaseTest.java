@@ -35,7 +35,7 @@ public class BaseTest {
     @Parameters(value = {"deviceName", "platform", "udid"})
     @BeforeMethod(description = "Open application")
     public void setUp(@Optional("xiaomi redmi 4x") String deviceName, @Optional("Android") String platform, @Optional("495dc6217cf4") String udid) {
-        DriverManager manager = null;
+        DriverManager manager;
         switch (platform) {
             case ("Android"):
                 manager = new AndroidDriverManager();
@@ -43,6 +43,8 @@ public class BaseTest {
             case ("iOS"):
                 manager = new IOSDriverManager();
                 break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + platform);
         }
         appiumServer = AppiumServerJava.startServer();
         driver = manager.getDriver(appiumServer, deviceName, platform, udid);
