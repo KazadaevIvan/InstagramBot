@@ -1,12 +1,10 @@
 package database;
 
-import utils.PropertyReader;
-
 import java.sql.*;
 
 public class DBConnection {
-    String user = System.getenv().getOrDefault("user", PropertyReader.getProperty("user"));
-    String dbPassword = System.getenv().getOrDefault("dbPassword", PropertyReader.getProperty("dbPassword"));
+    String user = System.getProperty("user");
+    String dbPassword = System.getProperty("dbPassword");
     private Connection connect = null;
     private Statement statement = null;
 
