@@ -10,6 +10,12 @@ pipeline {
             }
             parameters {
                 gitParameter branchFilter: 'origin/(.*)', defaultValue: 'master', name: 'BRANCH', type: 'PT_BRANCH'
+                string(defaultValue: '', description: '', name: 'email', trim: false)
+                string(defaultValue: '', description: '', name: 'password', trim: false)
+                string(defaultValue: '', description: '', name: 'profile', trim: false)
+                string(defaultValue: '', description: '', name: 'numberofprofilestofollow', trim: false)
+                string(defaultValue: '', description: '', name: 'user', trim: false)
+                string(defaultValue: '', description: '', name: 'dbPassword', trim: false)
             }
 
     stages {
@@ -19,7 +25,8 @@ pipeline {
                 git branch: "${params.BRANCH}", url: 'https://github.com/KazadaevIvan/InstagramBot.git'
 
                 // Run Maven on a Unix agent.
-                sh "mvn clean test -Dmaven.test.failure.ignore=true"
+                sh "mvn clean test -Demail=${email.password} -Dpassword=${params.password} -Dprofile=${params.profile}
+                 -Dnumberofprofilestofollow=${params.numberofprofilestofollow} -Duser=${params.user} -DdbPassword=${params.dbPassword} -Dmaven.test.failure.ignore=true"
 
                 // To run Maven on a Windows agent, use
                 //bat "mvn clean test -Dmaven.test.failure.ignore=true"
