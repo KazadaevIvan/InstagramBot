@@ -49,7 +49,7 @@ public class BaseTest {
         }
         appiumServer = AppiumServerJava.startServer();
         driver = manager.getDriver(appiumServer, deviceName, platform, udid);
-        log.debug(String.format("Driver has been initialized. Device name: %s, platform: %s, udid: %s" + deviceName, platform, udid));
+        log.debug(String.format("Driver has been initialized. Device name: '%s', platform: '%s', udid: '%s'" + deviceName, platform, udid));
         homePage = new HomePage(driver);
         profileFollowsPage = new ProfileFollowsPage(driver);
         locationStrategy = new LocationStrategy(driver);
