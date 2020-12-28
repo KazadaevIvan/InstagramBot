@@ -5,22 +5,22 @@
         <listener class-name="tests.base.TestListener"/>
         <listener class-name="tests.base.AnnotationTransformer"/>
     </listeners>
-        <test name="Pixel_3_XL_API_29">
-            <parameter name="deviceName" value="Pixel_3_XL_API_29"/>
-            <parameter name="udid" value="emulator-5554"/>
-            <parameter name="platform" value="Android"/>
-            <classes>
-                <class name="tests.FollowUsersTest"/>
-            </classes>
-        </test>
-        <test name="xiaomi 4X - Tests">
-            <parameter name="deviceName" value="xiaomi redmi 4x"/>
-            <parameter name="udid" value="495dc6217cf4"/>
-            <parameter name="platform" value="Android"/>
-            <classes>
-                <class name="tests.FollowUsersTest"/>
-            </classes>
-        </test>
+    <test name="Pixel_3_XL_API_29">
+        <parameter name="deviceName" value="Pixel_3_XL_API_29"/>
+        <parameter name="udid" value="emulator-5554"/>
+        <parameter name="platform" value="Android"/>
+        <classes>
+            <class name="tests.FollowUsersTest"/>
+        </classes>
+    </test>
+    <test name="xiaomi 4X - Tests">
+        <parameter name="deviceName" value="xiaomi redmi 4x"/>
+        <parameter name="udid" value="495dc6217cf4"/>
+        <parameter name="platform" value="Android"/>
+        <classes>
+            <class name="tests.FollowUsersTest"/>
+        </classes>
+    </test>
     <test name="iPhone - Tests">
         <parameter name="deviceName" value="iPhone"/>
         <parameter name="udid" value="0198419b57060d313b6ed2409fd4919871f5fe2e"/>
