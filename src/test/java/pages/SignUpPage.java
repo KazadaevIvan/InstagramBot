@@ -13,7 +13,7 @@ public class SignUpPage extends BasePage {
     @Step("Verify Sign Up page is opened")
     @Override
     public SignUpPage isPageOpened() {
-        waitForElementToAppear(locationStrategy.getElement("signUpButton"));
+        waitForElementToAppear("signUpButton");
         return this;
     }
 

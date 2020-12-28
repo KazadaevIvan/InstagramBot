@@ -3,10 +3,12 @@ package steps;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.qameta.allure.Step;
+import lombok.extern.log4j.Log4j2;
 import pages.HomePage;
 import pages.SignInPage;
 import pages.SignUpPage;
 
+@Log4j2
 public class LoginSteps {
     private SignUpPage signUpPage;
     private SignInPage signInPage;
@@ -20,6 +22,7 @@ public class LoginSteps {
 
     @Step("Login with email '{email}' and password '{password}'")
     public LoginSteps login(String email, String password) {
+        log.info(String.format("Login with email '%s' and password '%s'", email, password));
         if (signUpPage.isSignUpPage()) {
             signUpPage
                     .isPageOpened()

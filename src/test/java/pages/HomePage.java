@@ -13,7 +13,7 @@ public class HomePage extends BasePage {
     @Step("Verify Home page is opened")
     @Override
     public HomePage isPageOpened() {
-        waitForElementToAppear(locationStrategy.getElement("mainFeed"));
+        waitForElementToAppear("mainFeed");
         return this;
     }
 }

@@ -14,7 +14,7 @@ public class SearchPage extends BasePage {
     @Step("Verify Search page is opened")
     @Override
     public SearchPage isPageOpened() {
-        waitForElementToAppear(locationStrategy.getElement("searchInput"));
+        waitForElementToAppear("searchInput");
         return this;
     }
 

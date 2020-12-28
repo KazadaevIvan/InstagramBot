@@ -3,12 +3,14 @@ package steps;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.qameta.allure.Step;
+import lombok.extern.log4j.Log4j2;
 import pages.PostsPage;
 import pages.ProfileFollowsPage;
 import pages.ProfilePage;
 
 import java.util.List;
 
+@Log4j2
 public class ProfilePageSteps {
     private ProfilePage profilePage;
     private PostsPage postsPage;
@@ -22,6 +24,7 @@ public class ProfilePageSteps {
 
     @Step("Open first photo and set Like")
     public ProfilePageSteps attemptToSetLikeToTheFirstPhoto() {
+        log.info("Open first photo and set Like");
         profilePage
                 .isPageOpened();
         if (profilePage.isNotPrivate()) {
@@ -39,6 +42,7 @@ public class ProfilePageSteps {
 
     @Step("Follow profile")
     public ProfilePageSteps followProfile() {
+        log.info("Follow profile");
         profilePage
                 .isPageOpened()
                 .clickFollowButton();
@@ -47,6 +51,7 @@ public class ProfilePageSteps {
 
     @Step("Get list of '{numberOfFollowers}' accounts which follow this profile")
     public List<String> getFollowers(int numberOfFollowers) {
+        log.info(String.format("Get list of '%s' accounts which follow this profile", numberOfFollowers));
         profilePage
                 .isPageOpened()
                 .openFollowersList();

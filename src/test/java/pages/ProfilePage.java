@@ -3,8 +3,10 @@ package pages;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.qameta.allure.Step;
+import lombok.extern.log4j.Log4j2;
 import utils.appium.AppiumUtils;
 
+@Log4j2
 public class ProfilePage extends BasePage {
     public ProfilePage(AppiumDriver<MobileElement> driver) {
         super(driver);
@@ -13,7 +15,7 @@ public class ProfilePage extends BasePage {
     @Step("Verify Profile page is opened")
     @Override
     public ProfilePage isPageOpened() {
-        waitForElementToAppear(locationStrategy.getElement("followers"));
+        waitForElementToAppear("followers");
         return this;
     }
 
@@ -25,7 +27,7 @@ public class ProfilePage extends BasePage {
 
     @Step("Tap FOLLOW button")
     public ProfilePage clickFollowButton() {
-        waitForElementToAppear(locationStrategy.getElement("followButton"));
+        waitForElementToAppear("followButton");
         locationStrategy.getElement("followButton").click();
         return this;
     }
@@ -44,12 +46,14 @@ public class ProfilePage extends BasePage {
 
     @Step("Verify profile is not private")
     public Boolean isNotPrivate() {
+        log.info("Verify profile is not private");
         return locationStrategy.getElementsList("privateAccountTitleList").isEmpty();
     }
 
     @Step("Verify profile has photos")
     public Boolean hasPhotos() {
-        waitForElementToAppear(locationStrategy.getElement("postsNumber"));
+        log.info("Verify profile has photos");
+        waitForElementToAppear("postsNumber");
         return !locationStrategy.getElement("postsNumber").getText().equals("0");
     }
 }

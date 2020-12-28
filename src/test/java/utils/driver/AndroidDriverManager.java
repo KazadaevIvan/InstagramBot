@@ -4,11 +4,13 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
+import lombok.extern.log4j.Log4j2;
 import utils.PropertyManager;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
 
+@Log4j2
 public class AndroidDriverManager extends DriverManager {
 
     @Override
@@ -25,7 +27,9 @@ public class AndroidDriverManager extends DriverManager {
             cap.setCapability("avdReadyTimeout", 300000);
         }
         driver = new AndroidDriver<>(service, cap);
-        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+        int implicitlyWaitTimer = 15;
+        log.debug(String.format("Set implicit wait for %s seconds", implicitlyWaitTimer));
+        driver.manage().timeouts().implicitlyWait(implicitlyWaitTimer, TimeUnit.SECONDS);
         return driver;
     }
 }

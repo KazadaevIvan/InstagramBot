@@ -3,6 +3,7 @@ package tests.base;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
+import lombok.extern.log4j.Log4j2;
 import org.testng.annotations.*;
 import pages.HomePage;
 import pages.ProfileFollowsPage;
@@ -15,6 +16,7 @@ import utils.driver.AndroidDriverManager;
 import utils.driver.DriverManager;
 import utils.driver.IOSDriverManager;
 
+@Log4j2
 @Listeners(TestListener.class)
 public class BaseTest {
     public String email = System.getProperty("email");
@@ -47,6 +49,7 @@ public class BaseTest {
         }
         appiumServer = AppiumServerJava.startServer();
         driver = manager.getDriver(appiumServer, deviceName, platform, udid);
+        log.debug(String.format("Driver has been initialized. Device name: %s, platform: %s, udid: %s" + deviceName, platform, udid));
         homePage = new HomePage(driver);
         profileFollowsPage = new ProfileFollowsPage(driver);
         locationStrategy = new LocationStrategy(driver);
