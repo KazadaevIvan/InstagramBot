@@ -21,8 +21,8 @@
   },
   {
     "name": "mainFeed",
-    "type": "xpath",
-    "value": "//android.widget.Button[@content-desc='Scroll to top']"
+    "type": "accessibilityId",
+    "value": "Scroll to top"
   },
   {
     "name": "likeButton",
