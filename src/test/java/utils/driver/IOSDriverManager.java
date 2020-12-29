@@ -19,7 +19,7 @@ public class IOSDriverManager extends DriverManager {
         cap.setCapability("autoAcceptAlerts", true);
 
         driver = new IOSDriver<>(service, cap);
-        int implicitlyWaitTimer = 5;
+        int implicitlyWaitTimer = 10;
         log.debug(String.format("Set implicit wait for %s seconds", implicitlyWaitTimer));
         driver.manage().timeouts().implicitlyWait(implicitlyWaitTimer, TimeUnit.SECONDS);
         return driver;
