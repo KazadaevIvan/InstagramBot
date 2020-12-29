@@ -25,6 +25,7 @@ public class AndroidDriverManager extends DriverManager {
             cap.setCapability("avd", deviceName);
             cap.setCapability("avdLaunchTimeout", 300000);
             cap.setCapability("avdReadyTimeout", 300000);
+            cap.setCapability("adbExecTimeout", 5000);
         }
         driver = new AndroidDriver<>(service, cap);
         int implicitlyWaitTimer = 8;
