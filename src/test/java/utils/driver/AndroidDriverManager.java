@@ -28,7 +28,7 @@ public class AndroidDriverManager extends DriverManager {
             cap.setCapability("adbExecTimeout", 30000);
         }
         driver = new AndroidDriver<>(service, cap);
-        int implicitlyWaitTimer = 10;
+        int implicitlyWaitTimer = 5;
         log.debug(String.format("Set implicit wait for %s seconds", implicitlyWaitTimer));
         driver.manage().timeouts().implicitlyWait(implicitlyWaitTimer, TimeUnit.SECONDS);
         return driver;
