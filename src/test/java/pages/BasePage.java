@@ -13,6 +13,7 @@ import utils.LocationStrategy;
 
 import java.io.IOException;
 import java.time.Duration;
+import java.util.NoSuchElementException;
 
 @Log4j2
 abstract public class BasePage {
@@ -37,7 +38,7 @@ abstract public class BasePage {
         try {
             wait.until(ExpectedConditions.visibilityOf(locationStrategy.getElement(elementName)));
             return true;
-        } catch (TimeoutException e) {
+        } catch (TimeoutException | NoSuchElementException e) {
             log.error(e.getLocalizedMessage());
             Assert.fail("Could not find element with locator " + locationStrategy.getElementValueFromFile(locationStrategy.getFileContent(), elementName));
             return false;
