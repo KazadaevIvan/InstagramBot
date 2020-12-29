@@ -18,7 +18,7 @@ public class ProfileFollowsPage extends BasePage {
     @Step("Verify Profile Follows page is opened")
     @Override
     public ProfileFollowsPage isPageOpened() {
-        waitForElementToAppear(locationStrategy.getElement("followersTab"));
+        waitForElementToAppear("followersTab");
         return this;
     }
 

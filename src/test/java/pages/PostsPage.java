@@ -13,7 +13,7 @@ public class PostsPage extends BasePage {
     @Step("Verify Posts page is opened")
     @Override
     public PostsPage isPageOpened() {
-        waitForElementToAppear(locationStrategy.getElement("likeButton"));
+        waitForElementToAppear("likeButton");
         return this;
     }
 

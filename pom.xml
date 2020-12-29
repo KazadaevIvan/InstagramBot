@@ -9,6 +9,8 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.surefire.plugin.version>3.0.0-M3</maven.surefire.plugin.version>
         <maven.compiler.plugin.version>3.8.0</maven.compiler.plugin.version>
         <testng.version>7.0.0</testng.version>
@@ -22,6 +24,7 @@
         <log4j.version>2.13.3</log4j.version>
         <lombok.version>1.18.8</lombok.version>
         <jaxbapi.version>2.3.0</jaxbapi.version>
+        <jacksondataformatyaml.version>2.11.3</jacksondataformatyaml.version>
     </properties>
 
     <build>
@@ -110,9 +113,15 @@
         </dependency>
 
         <dependency>
-        <groupId>javax.xml.bind</groupId>
-        <artifactId>jaxb-api</artifactId>
-        <version>${jaxbapi.version}</version>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>${jaxbapi.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-yaml</artifactId>
+            <version>${jacksondataformatyaml.version}</version>
         </dependency>
     </dependencies>
 </project>

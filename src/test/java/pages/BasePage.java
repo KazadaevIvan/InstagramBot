@@ -8,14 +8,16 @@ import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
+import org.testng.Assert;
 import utils.LocationStrategy;
 
 import java.io.IOException;
 import java.time.Duration;
+import java.util.NoSuchElementException;
 
 @Log4j2
 abstract public class BasePage {
-    private static final int TIMEOUT = 11;
+    private static final int TIMEOUT = 21;
     private static final int POLLING = 1;
     private final FluentWait<AppiumDriver<MobileElement>> wait;
     String platform;
@@ -27,17 +29,28 @@ abstract public class BasePage {
         wait = new FluentWait<>(driver)
                 .withTimeout(Duration.ofSeconds(TIMEOUT))
                 .pollingEvery(Duration.ofSeconds(POLLING))
-                .ignoring(StaleElementReferenceException.class);
+                .ignoring(StaleElementReferenceException.class, NoSuchElementException.class);
         platform = (String) driver.getCapabilities().getCapability("platformName");
         locationStrategy = new LocationStrategy(driver);
+    }
+
+    boolean waitForElementToAppear(String elementName) {
+        try {
+            wait.until(ExpectedConditions.visibilityOf(locationStrategy.getElement(elementName)));
+            return true;
+        } catch (TimeoutException | NoSuchElementException e) {
+            log.error(e.getLocalizedMessage());
+            Assert.fail("Could not find element with locator " + locationStrategy.getElementValueFromFile(locationStrategy.getFileContent(), elementName));
+            return false;
+        }
     }
 
     boolean waitForElementToAppear(MobileElement element) {
         try {
             wait.until(ExpectedConditions.visibilityOf(element));
             return true;
-        } catch (TimeoutException ex) {
-            log.error(ex.getLocalizedMessage());
+        } catch (TimeoutException e) {
+            log.error(e.getLocalizedMessage());
             return false;
         }
     }
@@ -46,7 +59,7 @@ abstract public class BasePage {
 
     @Step("Open Search page")
     public SearchPage openSearchPage() {
-        waitForElementToAppear(locationStrategy.getElement("searchPageIcon"));
+        waitForElementToAppear("searchPageIcon");
         locationStrategy.getElement("searchPageIcon").click();
         return new SearchPage(driver);
     }
