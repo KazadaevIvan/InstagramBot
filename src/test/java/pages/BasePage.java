@@ -29,7 +29,7 @@ abstract public class BasePage {
         wait = new FluentWait<>(driver)
                 .withTimeout(Duration.ofSeconds(TIMEOUT))
                 .pollingEvery(Duration.ofSeconds(POLLING))
-                .ignoring(StaleElementReferenceException.class);
+                .ignoring(StaleElementReferenceException.class, NoSuchElementException.class);
         platform = (String) driver.getCapabilities().getCapability("platformName");
         locationStrategy = new LocationStrategy(driver);
     }
